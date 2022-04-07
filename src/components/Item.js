@@ -1,45 +1,44 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-
-
 function Item(props) {
 
-  /* En un futuro colocaremos los estilos en un theme de material UI */  
+	return (
+		<>
+		<div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+				<article className="overflow-hidden rounded-lg shadow-lg">
 
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="300"
-        sx={{
-          objectFit: "contain"
-        }}
-        image={props.image}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {props.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.description}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
-  );
+					<a href=".#">
+						<img alt="Placeholder" className="block h-auto w-full" src={props.image}/>
+					</a>
+
+					<header className="flex items-center justify-between leading-tight p-2 md:p-4">
+						<h1 className="text-lg">
+							<a className="no-underline hover:underline text-black" href=".#">
+								{props.title}
+							</a>
+						</h1>
+						<p className="text-grey-darker text-sm">
+							{props.rate}
+						</p>
+					</header>
+
+					<footer className="flex items-center justify-between leading-none p-2 md:p-4">
+						<p className="ml-2 text-sm">
+							{props.description}
+						</p>
+						<a className="no-underline text-grey-darker hover:text-red-dark" href=".#">
+							<span className="hidden">Like</span>
+							<i className="fa fa-heart"></i>
+						</a>
+					</footer>
+
+				</article>
+
+			</div>
+		</>
+
+	);
 }
 
-export { Item }
-
+export default Item
 
 
 

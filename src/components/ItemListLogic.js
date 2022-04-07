@@ -1,6 +1,5 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
-import { Item } from './Item'
+import Item  from './Item'
 
 function ItemListLogic() {
     const [error, setError] = useState(null)
@@ -14,6 +13,7 @@ function ItemListLogic() {
         .then(result => {
                 setIsLoad(true)
                 setInfo(result)
+                console.log(result)
             },
         
             (error) => {
@@ -39,6 +39,7 @@ function ItemListLogic() {
                         title={item.title} 
                         description={item.description} 
                         image={item.image} 
+                        rate={item.rating.rate}
                         key={item.id}
                         />
                     )}
@@ -56,4 +57,4 @@ function ItemListLogic() {
 }
 
 
-export { ItemListLogic }
+export default ItemListLogic

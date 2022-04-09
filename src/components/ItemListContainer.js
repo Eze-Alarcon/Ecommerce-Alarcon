@@ -4,7 +4,9 @@ function ItemListContainer() {
     
 
     return (
-        <ItemList/>
+        <div className="w-9/12 mx-auto my-16">
+            <ItemList/>
+        </div>
     )
 }
 

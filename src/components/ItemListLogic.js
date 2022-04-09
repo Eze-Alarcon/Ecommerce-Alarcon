@@ -13,7 +13,6 @@ function ItemListLogic() {
         .then(result => {
                 setIsLoad(true)
                 setInfo(result)
-                console.log(result)
             },
         
             (error) => {
@@ -39,7 +38,10 @@ function ItemListLogic() {
                         title={item.title} 
                         description={item.description} 
                         image={item.image} 
+                        price={item.price}
+                        category={item.category}
                         rate={item.rating.rate}
+                        count={item.rating.count}
                         key={item.id}
                         />
                     )}

@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import Item  from './Item'
+import ProductDetail from './ProductDetail'
 
-function ItemListLogic() {
+
+function ProductDetailLogic() {
     const [error, setError] = useState(null)
     const [isLoad, setIsLoad] = useState(false)
     const [info, setInfo] = useState()
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch('https://fakestoreapi.com/products/1')
 
         .then(response => response.json())
         .then(result => {
@@ -30,23 +31,9 @@ function ItemListLogic() {
         </>
     )} else if (isLoad && !!info) {
         return (
-            <>
-            { info.map((item) => {
-                return (
-                
-                <Item
-                    title={item.title} 
-                    description={item.description} 
-                    image={item.image} 
-                    price={item.price}
-                    category={item.category}
-                    rate={item.rating.rate}
-                    count={item.rating.count}
-                    key={item.id}
-                    />
-                )}
-            )} 
-            </>
+            <ProductDetail 
+                productInfo={info}
+            />
         )
     } 
 
@@ -58,5 +45,4 @@ function ItemListLogic() {
 
 }
 
-
-export default ItemListLogic
+export default ProductDetailLogic

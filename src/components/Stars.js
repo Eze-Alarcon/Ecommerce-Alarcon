@@ -6,13 +6,13 @@ function Stars(props) {
 
 
     for (let i = 0; i < completeStars; i++) {
-        fullStars.push("fas fa-star text-yellow-400 text-xs")
+        fullStars.push("fas fa-star text-yellow-400") // text-xs
     }
     
-    halfStar !== 0 && fullStars.push("fas fa-star-half-alt text-yellow-400 text-xs")
+    halfStar !== 0 && fullStars.push("fas fa-star-half-alt text-yellow-400") // text-xs
 
     for(missingStars; missingStars < 5; missingStars++) {
-        fullStars.push("far fa-star text-gray-400 text-xs")
+        fullStars.push("far fa-star text-gray-400") // text-xs
     }
 
     return (

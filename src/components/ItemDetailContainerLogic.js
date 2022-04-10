@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import ItemDetailContainer from './ProductDetail'
+import ItemDetailContainer from './ItemDetailContainer'
 
 
-function ProductDetailLogic() {
+function ItemDetailContainerLogic() {
     const [error, setError] = useState(null)
     const [info, setInfo] = useState()
 
@@ -20,9 +20,6 @@ function ProductDetailLogic() {
         })
 
     }, [])
-
-    // console.log(isLoad)
-
 
     if (error) {
         return (
@@ -46,4 +43,4 @@ function ProductDetailLogic() {
 
 }
 
-export default ProductDetailLogic
+export default ItemDetailContainerLogic

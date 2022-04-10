@@ -1,10 +1,53 @@
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+
+// Usando la V6 de react-route-dom
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar'
 import ItemDetailContainerLogic from './components/ItemDetailContainerLogic';
-import { Route } from 'react-router-dom';
 import ItemListContainer from './components/ItemListContainer'
-import { Switch } from 'react-router-dom'; 
+
+/*  
+  Cambios importantes:
+    * El componente Switch ha sido reemplazado por Routes
+    * Ya no es necesario el exact (de hecho, lo han quitado)
+    * Ya no necesitamos pasar los componentes como hijos sino como propiedades
+    
+     
+    Mejoras: 
+      Ahora no importa el orden de las rutas!
+      Si necesitamos renderizar 2 o mas componentes, podemos usar un fragment
+*/
+
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter> 
+        <Navbar/>
+        <Routes>
+          <Route path="/" element={<ItemListContainer/>} />
+          <Route path="/details" element={<ItemDetailContainerLogic/>} /> 
+        </Routes>
+      </BrowserRouter>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+// Imports usados en la V5 de react-router-dom
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 // usando version 5 de react-router-dom
@@ -44,7 +87,7 @@ export default App;
   De esta forma, react buscara la ruta exacta y no "lo primero que le parezca ok..."
 */
 
-function App() {
+/* function App() {
   return (
     <div className="App">
       <BrowserRouter>
@@ -64,4 +107,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; */

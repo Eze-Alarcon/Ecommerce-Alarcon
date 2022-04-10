@@ -3,7 +3,7 @@ import  { CartWidget } from './CartWidget'
 function Navbar() {
     return(
         <header className="flex justify-between items-center h-16 bg-blue-500 px-4 ">
-            <h1 className="w-1/12">nombre/logo</h1>
+            <h1 className="w-1/12">BRAND NAME</h1>
             <div className="container w-8/12 flex justify-evenly">
                 <a href=".#" className="">electronics</a>
                 <a href=".#" className="">jewelery</a>

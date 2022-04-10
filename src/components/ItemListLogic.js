@@ -13,7 +13,6 @@ function ItemListLogic() {
 
         .catch(error => setError(error))
 
-        console.log()
     }, [])
 
     if (error) {
@@ -35,6 +34,7 @@ function ItemListLogic() {
                     category={item.category}
                     rate={item.rating.rate}
                     count={item.rating.count}
+                    id={item.id}
                     key={item.id} 
                     />
                         

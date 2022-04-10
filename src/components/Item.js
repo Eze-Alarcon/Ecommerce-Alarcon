@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Stars from "./Stars";
 
 function Item(props) {
@@ -6,17 +7,16 @@ function Item(props) {
 		<>
 		<div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 				<article className="overflow-hidden rounded-lg shadow-lg">
+					<Link to={"/products/" + String(props.id)}>
 
 					<div className="w-7/12 pt-5 mx-auto">
-						<a href=".#">
 							<img alt="Placeholder" className="block my-4 mx-auto max-h-48 object-cover" src={props.image}/>
-						</a>
 					</div>
 
 					<div className="flex items-center justify-between leading-none p-2 md:p-4">
 
 						<div className="px-4 py-3 bg-white">
-							<a href=".#" className=""><h1 className="text-gray-800 font-semibold text-lg hover:text-red-500 transition duration-300 ease-in-out">{props.title}</h1></a>
+							<h1 className="text-gray-800 font-semibold text-lg hover:text-red-500 transition duration-300 ease-in-out">{props.title}</h1>
 							<div className="flex py-2">
 								<p className="mr-2 text-xs text-gray-600">$ {props.price}</p>
 									<p className="mr-2 text-xs text-red-600 line-through">$ {(props.price * 1.3).toFixed(2)}</p>
@@ -35,6 +35,7 @@ function Item(props) {
 
 					</div>
 
+					</Link>
 				</article>
 
 			</div>

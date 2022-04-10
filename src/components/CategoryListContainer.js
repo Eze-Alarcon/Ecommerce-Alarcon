@@ -15,7 +15,6 @@ function CategoryListContainer() {
 
         .catch(error => setError(error))
 
-        console.log(idCategory)
     }, [idCategory])
 
     if (error) {
@@ -37,6 +36,7 @@ function CategoryListContainer() {
                     category={item.category}
                     rate={item.rating.rate}
                     count={item.rating.count}
+                    id={item.id}
                     key={item.id} 
                     />
                         

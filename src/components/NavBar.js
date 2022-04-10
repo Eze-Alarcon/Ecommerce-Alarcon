@@ -4,13 +4,13 @@ import  { CartWidget } from './CartWidget'
 function Navbar() {
     return(
         <>
-        <header className="flex flex-wrap pr-24">
+        <header className="flex flex-wrap">
             <nav className="flex w-screen justify-between bg-gray-50 text-gray-600">
-                <div className="w-full xl:px-12 py-6 px-5 flex space-x-12 items-center ">
+                <div className="w-full px-12 py-6 flex space-x-12 items-center ">
                     <Link to="/" className="text-2xl font-bold">
                         BRAND NAME
                     </Link>
-                    <ul className="hidden md:flex mx-auto px-5 font-semibold space-x-12">
+                    <ul className="md:flex mx-auto px-5 font-semibold space-x-12">
                         <li><Link to="/electronics" className="hover:text-gray-900">Electronics</Link></li>
                         <li><Link to="/jewelery" className="hover:text-gray-900">Jewelery</Link></li>
                         <li><Link to="/men's clothing" className="hover:text-gray-900">Men's clothing</Link></li>
@@ -18,10 +18,10 @@ function Navbar() {
                     </ul>
                     
                 </div>
-                <div className="hidden xl:flex items-center text-gray-600">
-                    <a className="flex items-center hover:text-gray-900" href=".#">
+                <div className="flex items-center text-gray-600 mr-24">
+                    <Link to="/cart" className="flex items-center hover:text-gray-900" href=".#">
                         <CartWidget/>
-                    </a>
+                    </Link>
                 </div>
             </nav>
         </header>

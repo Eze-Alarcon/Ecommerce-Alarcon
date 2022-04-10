@@ -1,27 +1,27 @@
 import { useEffect, useState } from 'react'
-import ProductDetail from './ProductDetail'
+import ItemDetailContainer from './ProductDetail'
 
 
 function ProductDetailLogic() {
     const [error, setError] = useState(null)
-    const [isLoad, setIsLoad] = useState(false)
     const [info, setInfo] = useState()
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products/1')
+        fetch('https://fakestoreapi.com/products/2')
 
         .then(response => response.json())
-        .then(result => {
-                setIsLoad(true)
-                setInfo(result)
+        .then(response => {
+                setInfo(response)
             },
-        
-            (error) => {
-                setIsLoad(true)
-                setError(error)
-            }
         )
+
+        .catch(error => {
+                setError(error)
+        })
+
     }, [])
+
+    // console.log(isLoad)
 
 
     if (error) {
@@ -29,9 +29,10 @@ function ProductDetailLogic() {
         <>
             <p>Algo salio mal</p>
         </>
-    )} else if (isLoad && !!info) {
+    )} else if (!!info) { 
+        // Solo enviar la informacion, no la etiqueta de "ProductDetail"
         return (
-            <ProductDetail 
+            <ItemDetailContainer 
                 productInfo={info}
             />
         )

@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react'
-import Item  from './Item'
+import { useParams } from 'react-router-dom'
+import Item from './Item'
 
-function ItemListLogic() {
+function CategoryListContainer() {
     const [error, setError] = useState(null)
     const [info, setInfo] = useState()
+    const { idCategory } = useParams()
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch(`https://fakestoreapi.com/products/category/${idCategory}`)
 
         .then(response => response.json())
         .then(result => setInfo(result))
 
         .catch(error => setError(error))
 
-        console.log()
-    }, [])
+        console.log(idCategory)
+    }, [idCategory])
 
     if (error) {
         return (
@@ -51,7 +53,7 @@ function ItemListLogic() {
         </>
     )
 
+
 }
 
-
-export default ItemListLogic
+export default CategoryListContainer

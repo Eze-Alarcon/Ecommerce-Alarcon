@@ -1,1 +1,0 @@
-/* traer el select y veriricar la categoria del producto para imprimir una cosa o la otra */

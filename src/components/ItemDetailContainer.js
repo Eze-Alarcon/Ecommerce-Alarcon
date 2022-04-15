@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ItemCount } from './ItemCount'
 import Star from './Stars'
+import { Link } from 'react-router-dom'
 
 
 function ItemDetailContainer({productInfo}) {
@@ -46,11 +47,27 @@ function ItemDetailContainer({productInfo}) {
 						<span className="mr-2">Size</span>
 						<div className="relative">
 							<select value={size} onChange={tamanio} className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-8">
-								<option value="SM">SM</option>
+
+						{/* {
+							productInfo.category === "electronics"
+							? <option value="SM">SM</option>
 								<option value="M">M</option>
 								<option value="L">L</option>
 								<option value="XL">XL</option>
+							: <option value="">SM</option>
+								<option value="M">M</option>
+								<option value="L">L</option>
+								<option value="XL">XL</option> 
+						} */}
+
+								<option value="">SM</option>
+								<option value="M">M</option>
+								<option value="L">L</option>
+								<option value="XL">XL</option> 
+								
 							</select>
+
+
 							<span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
 								<i className="fas fa-chevron-down"></i>
 							</span>
@@ -63,7 +80,7 @@ function ItemDetailContainer({productInfo}) {
 					{
 						!onCart
 						? <button type="submit" className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Agregar al carrito</button>
-						: <button type="button" className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Item en carrito</button>
+						: <Link to="/Cart" className="flex ml-auto"><button type="button" className=" text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Item en carrito</button></Link>
 					}
 				</div>
 			</form>

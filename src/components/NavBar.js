@@ -15,6 +15,7 @@ function Navbar() {
                         <li><Link to="/jewelery" className="hover:text-gray-900">Jewelery</Link></li>
                         <li><Link to="/men's clothing" className="hover:text-gray-900">Men's clothing</Link></li>
                         <li><Link to="/women's clothing" className="hover:text-gray-900">Women's clothing</Link></li>
+                        <li><Link to="/about" className="hover:text-gray-900">About us</Link></li>
                     </ul>
                     
                 </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Banner from './Banner'
 import Item  from './Item'
 
 function ItemListLogic() {
@@ -22,11 +23,13 @@ function ItemListLogic() {
         </>
     )} else if (!!info) {
         return (
-        <div className="w-9/12 mx-auto my-16">
+        <>
+        <Banner/>
+        <div className="w-9/12 mx-auto my-16" id="content">
             <div className="flex flex-wrap -mx-1 lg:-mx-4"> 
         { info.map((item) => {
             return (
-            <Item
+                <Item
                     title={item.title} 
                     description={item.description} 
                     image={item.image} 
@@ -38,10 +41,11 @@ function ItemListLogic() {
                     key={item.id} 
                     />
                         
-            )}
-        )} 
+                    )}
+                    )} 
             </div>
         </div>
+        </>
         )
     } 
 

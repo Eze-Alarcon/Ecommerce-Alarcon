@@ -44,36 +44,27 @@ function ItemDetailContainer({productInfo}) {
 						<button onClick={colorbutton} type="button" value="Red" className="border-2 border-gray-300 ml-2 bg-red-500 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-red-700/25"></button>
 					</div>
 					<div className="flex ml-3 items-center">
-						<span className="mr-2">Size</span>
-						<div className="relative">
-							<select value={size} onChange={tamanio} className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-8">
 
-						{/* {
-							productInfo.category === "electronics"
-							? <option value="SM">SM</option>
-								<option value="M">M</option>
-								<option value="L">L</option>
-								<option value="XL">XL</option>
-							: <option value="">SM</option>
-								<option value="M">M</option>
-								<option value="L">L</option>
-								<option value="XL">XL</option> 
-						} */}
-
-								<option value="">SM</option>
-								<option value="M">M</option>
-								<option value="L">L</option>
-								<option value="XL">XL</option> 
-								
-							</select>
-
-
-							<span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
-								<i className="fas fa-chevron-down"></i>
-							</span>
-						</div>
+						{
+							(productInfo.category !== "electronics")
+							?	<>
+								<span className="mr-2">Size</span>
+								<div className="relative">
+								<select value={size} onChange={tamanio} className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-8">
+									<option value="SM">SM</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+								</select>
+								<span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+										<i className="fas fa-chevron-down"></i>
+									</span>
+								</div>
+								</>
+							: 	<></>
+						}
 					</div>
-				<ItemCount></ItemCount>
+					<ItemCount></ItemCount>
 				</div>
 				<div className="flex">
 					<span className="title-font font-medium text-2xl text-gray-900">$ {productInfo.price}</span>

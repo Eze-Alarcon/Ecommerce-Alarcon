@@ -6,11 +6,11 @@ function Item(props) {
 	return (
 		<>
 		<div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-				<article className="overflow-hidden rounded-lg shadow-lg">
-					<Link to={"/products/" + String(props.id)}>
+				<article className="overflow-hidden h-[463px] rounded-lg shadow-lg">
+					<Link to={"/products/" + String(props.id)} className="flex flex-col justify-evenly h-full">
 
 					<div className="w-7/12 pt-5 mx-auto">
-							<img alt="Placeholder" className="block my-4 mx-auto max-h-48 object-cover" src={props.image}/>
+							<img alt="Placeholder" className="block my-4 mx-auto max-h-48 object-contain" src={props.image}/>
 					</div>
 
 					<div className="flex items-center justify-between leading-none p-2 md:p-4">

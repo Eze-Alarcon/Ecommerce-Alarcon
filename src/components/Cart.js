@@ -6,8 +6,6 @@ import { CartContext } from "../context/CartContext"
 const Cart = () => {
     const context = useContext(CartContext)
 
-    console.log(context.cartList)
-
     return (
         <>
             <div className="container mx-auto mt-5">

@@ -1,20 +1,28 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { ItemCount } from './ItemCount'
 import Star from './Stars'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
 
 
 function ItemDetailContainer({productInfo}) {
 	const [color, setColor] = useState("white")
 	const [size, setSize] = useState("SM")
+	const [quantity, setQuantity] = useState(1)
 	const [onCart, setOnCart] = useState(false)
+	const context = useContext(CartContext)
 
 	const saveForm = (e) => {
-		console.log("Color: ", color)
-		console.log("Tamaño: ", size)
-		setOnCart(true)
 		e.preventDefault()
+		setOnCart(true)
+		context.addToCart([{
+			...productInfo,
+			color,
+			size,
+			quantity,
+		}])
 	}
+
 
 	const tamanio = (e) => setSize(e.target.value)
 
@@ -64,7 +72,7 @@ function ItemDetailContainer({productInfo}) {
 							: 	<></>
 						}
 					</div>
-					<ItemCount></ItemCount>
+					<ItemCount num={quantity} action={setQuantity} ></ItemCount>
 				</div>
 				<div className="flex">
 					<span className="title-font font-medium text-2xl text-gray-900">$ {productInfo.price}</span>

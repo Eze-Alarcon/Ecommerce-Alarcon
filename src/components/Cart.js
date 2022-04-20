@@ -6,7 +6,7 @@ import {CartContext} from "../context/CartContext"
 const Cart = () => {
     const pepe = useContext(CartContext)
 
-    console.log(pepe)
+    console.log(pepe.cartList)
 
 
     return (

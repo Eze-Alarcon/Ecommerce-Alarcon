@@ -12,15 +12,28 @@ function ItemDetailContainer({productInfo}) {
 	const [onCart, setOnCart] = useState(false)
 	const context = useContext(CartContext)
 
+
+	// let isOnCart = context.cartList.findIndex((product) => product.id === productInfo.id)
+	// console.log(isOnCart)
+
+
+	// if (isOnCart !== -1) {
+	// 	isOnCart = true
+	// } else {
+	// 	isOnCart = false
+	// }
+
+	// onCart(isOnCart)
+	
 	const saveForm = (e) => {
 		e.preventDefault()
 		setOnCart(true)
-		context.addToCart([{
+		context.addToCart({
 			...productInfo,
 			color,
 			size,
 			quantity,
-		}])
+		})
 	}
 
 

@@ -20,7 +20,7 @@ function Navbar() {
                     
                 </div>
                 <div className="flex items-center text-gray-600 mr-24">
-                    <Link to="/cart" className="flex items-center hover:text-gray-900" href=".#">
+                    <Link to="/cart" className="flex items-center hover:text-gray-900">
                         <CartWidget/>
                     </Link>
                 </div>

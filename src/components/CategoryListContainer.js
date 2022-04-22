@@ -26,22 +26,22 @@ function CategoryListContainer() {
         return (
         <div className="w-9/12 mx-auto my-16">
             <div className="flex flex-wrap -mx-1 lg:-mx-4"> 
-        { info.map((item) => {
-            return (
-            <Item
-                    title={item.title} 
-                    description={item.description} 
-                    image={item.image} 
-                    price={item.price}
-                    category={item.category}
-                    rate={item.rating.rate}
-                    count={item.rating.count}
-                    id={item.id}
-                    key={item.id} 
-                    />
-                        
-            )}
-        )} 
+                { info.map((item) => {
+                    return (
+                    <Item
+                        title={item.title} 
+                        description={item.description} 
+                        image={item.image} 
+                        price={item.price}
+                        category={item.category}
+                        rate={item.rating.rate}
+                        count={item.rating.count}
+                        id={item.id}
+                        key={item.id} 
+                        />
+                                
+                    )}
+                )} 
             </div>
         </div>
         )

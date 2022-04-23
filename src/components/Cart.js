@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { Link } from "react-router-dom"
 import { CartContext } from "../context/CartContext"
 
 
@@ -32,7 +33,7 @@ const Cart = () => {
                                     <img src={item.image} className="w-20 rounded" alt="Thumbnail"/>
                                 </td>
                                 <td className="w-1/3">
-                                    <p className="">{item.title}</p> {/* Nombre del producto */}
+                                    <Link to={`/products/${item.id}`}><p className="hover:text-blue-800">{item.title}</p></Link> {/* Nombre del producto */}
                                     <form onSubmit={(e) => context.removeItem(e)} data-id={item.id} data-color={item.color} data-size={item.size} data-identificator={item.identificator}>
                                         <button type="submit" className="text-gray-700 hover:text-red-500">
                                             <small className="block">(Remove item)</small>

@@ -17,11 +17,8 @@ const CartContextProvider = ({children}) => {
     },[cartList, totalProducts, update])
 
 
-
-
     const addToCart = (item) => {
         let itemOnCart = cartList.find((product) => product.id === item.id)
-
         let sameSize = false, sameColor = false
         let index = undefined
 
@@ -44,14 +41,8 @@ const CartContextProvider = ({children}) => {
 
     const removeItem = (e) => {
         e.preventDefault()
-        let dataSets = {
-            idProduct: Number(e.target.dataset.id),
-            colorProduct: e.target.dataset.color,
-            sizeProduct: e.target.dataset.size,
-            identificator: e.target.dataset.identificator,
-        }
-
-        setCartList(cartList.filter(product => product.identificator !== dataSets.identificator))
+        let identificator = e.target.dataset.identificator
+        setCartList(cartList.filter(product => product.identificator !== identificator))
     } 
 
     return (

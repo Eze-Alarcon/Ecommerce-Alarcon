@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { ItemCount } from './ItemCount'
 import Star from './Stars'
 import { Link } from 'react-router-dom'
@@ -12,6 +12,11 @@ function ItemDetailContainer({productInfo}) {
 	const [onCart, setOnCart] = useState(false)
 	const context = useContext(CartContext)
 
+	useEffect(() => {
+		// setOnCart(context.cartList.includes((item) => {
+		// 	console.log(item)
+		// }))
+	})
 	
 	const saveForm = (e) => {
 		e.preventDefault()
@@ -47,12 +52,22 @@ function ItemDetailContainer({productInfo}) {
 				<p className="leading-relaxed">{productInfo.description}</p>
 				<div className="flex mt-6 justify-between items-center pb-5 border-b-2 border-gray-200 mb-5">
 					
-					<div className="flex">
-						<span className="mr-2">Color</span>
-						<button onClick={colorbutton} type="button" value="White" className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-gray-300"></button>
-						<button onClick={colorbutton} type="button" value="Blue" className="border-2 border-gray-300 ml-2 bg-gray-700 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-blue-700/25"></button>
-						<button onClick={colorbutton} type="button" value="Red" className="border-2 border-gray-300 ml-2 bg-red-500 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-red-700/25"></button>
-					</div>
+
+					{
+							(productInfo.category !== "jewelery")
+							?	<>
+									<div className="flex">
+										<span className="mr-2">Color</span>
+										<button onClick={colorbutton} type="button" value="White" className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-gray-300"></button>
+										<button onClick={colorbutton} type="button" value="Blue" className="border-2 border-gray-300 ml-2 bg-gray-700 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-blue-700/25"></button>
+										<button onClick={colorbutton} type="button" value="Red" className="border-2 border-gray-300 ml-2 bg-red-500 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-red-700/25"></button>
+									</div>
+								</>
+							: 	<></>
+						}
+
+
+					
 					<div className="flex ml-3 items-center">
 
 						{
@@ -81,7 +96,10 @@ function ItemDetailContainer({productInfo}) {
 					{
 						!onCart
 						? <button type="submit" className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Agregar al carrito</button>
-						: <Link to="/Cart" className="flex ml-auto"><button type="button" className=" text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Item en carrito</button></Link>
+						: 	<>
+								<Link to="/Cart" className="flex ml-auto"><button type="button" className=" text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Item en carrito</button></Link>
+								<button type="submit" className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Agregar al carrito</button>
+							</>
 					}
 				</div>
 			</form>

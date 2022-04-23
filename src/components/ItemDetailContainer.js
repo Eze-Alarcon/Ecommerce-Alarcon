@@ -21,6 +21,7 @@ function ItemDetailContainer({productInfo}) {
 			color,
 			size,
 			quantity,
+			identificator: `${productInfo.id}-${color}-${size}`
 		})
 	}
 

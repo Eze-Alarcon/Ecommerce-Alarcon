@@ -33,7 +33,7 @@ const Cart = () => {
                                 </td>
                                 <td className="w-1/3">
                                     <p className="">{item.title}</p> {/* Nombre del producto */}
-                                    <form onSubmit={(e) => context.removeItem(e)} data-id={item.id} data-color={item.color} data-size={item.size}>
+                                    <form onSubmit={(e) => context.removeItem(e)} data-id={item.id} data-color={item.color} data-size={item.size} data-identificator={item.identificator}>
                                         <button type="submit" className="text-gray-700 hover:text-red-500">
                                             <small className="block">(Remove item)</small>
                                         </button>

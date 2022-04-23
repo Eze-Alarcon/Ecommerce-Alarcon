@@ -45,20 +45,13 @@ const CartContextProvider = ({children}) => {
     const removeItem = (e) => {
         e.preventDefault()
         let dataSets = {
-            idProduct: e.target.dataset.id,
+            idProduct: Number(e.target.dataset.id),
             colorProduct: e.target.dataset.color,
             sizeProduct: e.target.dataset.size,
+            identificator: e.target.dataset.identificator,
         }
-        console.log(dataSets)
 
-        let indexOfItem = cartList.findIndex((product) => 
-            product.id === dataSets.idProduct 
-            && product.size === dataSets.colorProduct
-            && product.color === dataSets.sizeProduct )
-
-        console.log(indexOfItem)
-        // setCartList([])
-        // setTotalProducts(0)
+        setCartList(cartList.filter(product => product.identificator !== dataSets.identificator))
     } 
 
     return (

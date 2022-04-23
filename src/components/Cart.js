@@ -27,16 +27,15 @@ const Cart = () => {
                     {
                         context.cartList?.map((item) => {
                             return (
-                            <tr className="h-32" key={item.title}>
+                            <tr className="h-32" key={`${item.id}-${item.size}-${item.color}`}>
                                 <td className="hidden pb-4 md:table-cell">
                                     <img src={item.image} className="w-20 rounded" alt="Thumbnail"/>
                                 </td>
                                 <td className="w-1/3">
                                     <p className="">{item.title}</p> {/* Nombre del producto */}
                                     <form action="" method="POST">
-                                        <button type="button" onClick={context.removeItem} className="text-gray-700 hover:text-red-500">
+                                        <button type="button" onClick={(item) => context.removeItem(item)} className="text-gray-700 hover:text-red-500">
                                             <small className="block">(Remove item)</small>
-                                            <small>por ahora mismo borrara todo el carrito*</small>
                                         </button>
                                     </form>
                                 </td>

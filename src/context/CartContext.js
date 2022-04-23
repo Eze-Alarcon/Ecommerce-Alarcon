@@ -13,8 +13,7 @@ const CartContextProvider = ({children}) => {
 
     const addToCart = (item) => {
         let itemOnCart = cartList.find((product) => product.id === item.id)
-        let sameSize = false
-        let sameColor = false
+        let sameSize = false, sameColor = false
         let index = undefined
         let val
 
@@ -35,14 +34,14 @@ const CartContextProvider = ({children}) => {
             val = cartList.reduce((acc, item) => acc + Number(item.quantity), 0)
         }
 
-        console.log(val)
-
         setTotalProducts(val)
-        
-        
     }
 
-    const removeItem = (item) => setCartList([]) 
+    const removeItem = (item) => {
+        console.log(item)
+        setCartList([])
+        setTotalProducts(0)
+    } 
 
     return (
         <CartContext.Provider value={{cartList, 

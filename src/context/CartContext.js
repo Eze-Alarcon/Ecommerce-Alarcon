@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // Esta es la variable que llamaremos para usar el contexto
 export const CartContext = createContext();
@@ -8,14 +8,22 @@ export const CartContext = createContext();
 const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
     const [totalProducts, setTotalProducts] = useState(0)
+    const [update, setUpdate] = useState(false)
     
+    useEffect(() => {
+        let val = cartList.reduce((acc, item) => acc + Number(item.quantity), 0)
+        setTotalProducts(val)
+        return setUpdate(false)
+    },[cartList, totalProducts, update])
+
+
 
 
     const addToCart = (item) => {
         let itemOnCart = cartList.find((product) => product.id === item.id)
+
         let sameSize = false, sameColor = false
         let index = undefined
-        let val
 
         if (itemOnCart !== undefined) {
             sameSize =  itemOnCart.size === item.size
@@ -23,24 +31,34 @@ const CartContextProvider = ({children}) => {
             index = cartList.findIndex((product => product.id === item.id ))
         }
 
-        (sameColor && sameSize)
-            ? cartList[index].quantity += item.quantity
-            : setCartList([...cartList, item])
-
-
-        if (totalProducts === 0) {
-            val = item.quantity
+        if (sameColor && sameSize) {
+            cartList[index].quantity += item.quantity
+            setUpdate(true)
         } else {
-            val = cartList.reduce((acc, item) => acc + Number(item.quantity), 0)
+            setCartList([...cartList, item])
         }
-
-        setTotalProducts(val)
     }
 
-    const removeItem = (item) => {
-        console.log(item)
-        setCartList([])
-        setTotalProducts(0)
+
+
+
+    const removeItem = (e) => {
+        e.preventDefault()
+        let dataSets = {
+            idProduct: e.target.dataset.id,
+            colorProduct: e.target.dataset.color,
+            sizeProduct: e.target.dataset.size,
+        }
+        console.log(dataSets)
+
+        let indexOfItem = cartList.findIndex((product) => 
+            product.id === dataSets.idProduct 
+            && product.size === dataSets.colorProduct
+            && product.color === dataSets.sizeProduct )
+
+        console.log(indexOfItem)
+        // setCartList([])
+        // setTotalProducts(0)
     } 
 
     return (

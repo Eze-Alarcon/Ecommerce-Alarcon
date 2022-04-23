@@ -6,26 +6,12 @@ import { CartContext } from '../context/CartContext'
 
 
 function ItemDetailContainer({productInfo}) {
-	const [color, setColor] = useState("white")
+	const [color, setColor] = useState("White")
 	const [size, setSize] = useState("SM")
 	const [quantity, setQuantity] = useState(1)
 	const [onCart, setOnCart] = useState(false)
 	const context = useContext(CartContext)
-	// let status
 
-
-	// Enviar funcion a context ???
-	// const search = context.cartList.findIndex((product) => product.id === productInfo.id)
-	
-
-	
-	// search !== -1
-	// 	? status = false
-	// 	: status = true
-	
-	// setOnCart(status)
-	
-	// console.log(status)
 	
 	const saveForm = (e) => {
 		e.preventDefault()

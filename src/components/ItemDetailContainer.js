@@ -11,19 +11,21 @@ function ItemDetailContainer({productInfo}) {
 	const [quantity, setQuantity] = useState(1)
 	const [onCart, setOnCart] = useState(false)
 	const context = useContext(CartContext)
+	// let status
 
 
-	// let isOnCart = context.cartList.findIndex((product) => product.id === productInfo.id)
-	// console.log(isOnCart)
+	// Enviar funcion a context ???
+	// const search = context.cartList.findIndex((product) => product.id === productInfo.id)
+	
 
-
-	// if (isOnCart !== -1) {
-	// 	isOnCart = true
-	// } else {
-	// 	isOnCart = false
-	// }
-
-	// onCart(isOnCart)
+	
+	// search !== -1
+	// 	? status = false
+	// 	: status = true
+	
+	// setOnCart(status)
+	
+	// console.log(status)
 	
 	const saveForm = (e) => {
 		e.preventDefault()

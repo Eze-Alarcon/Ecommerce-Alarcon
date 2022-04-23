@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 // Esta es la variable que llamaremos para usar el contexto
 export const CartContext = createContext();
@@ -8,31 +8,37 @@ export const CartContext = createContext();
 const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
     const [totalProducts, setTotalProducts] = useState(0)
-
-    useEffect((props) => {
-        setTotalProducts(cartList.reduce((acc, item) => {
-            return (acc + Number(item.quantity))
-        }, 0))
-
-        console.log(props)
-
-    }, [cartList])
-
+    
 
 
     const addToCart = (item) => {
-
         let itemOnCart = cartList.find((product) => product.id === item.id)
-        if (itemOnCart === undefined) {
-            setCartList([...cartList, item])
-        } else {
-            let index = cartList.findIndex((product => product.id === item.id ))
-            cartList[index].quantity += item.quantity
-            setTotalProducts(cartList.reduce((acc, item) => {
-                return (acc + Number(item.quantity))
-            }, 0))
+        let sameSize = false
+        let sameColor = false
+        let index = undefined
+        let val
+
+        if (itemOnCart !== undefined) {
+            sameSize =  itemOnCart.size === item.size
+            sameColor = itemOnCart.color === item.color
+            index = cartList.findIndex((product => product.id === item.id ))
         }
 
+        (sameColor && sameSize)
+            ? cartList[index].quantity += item.quantity
+            : setCartList([...cartList, item])
+
+
+        if (totalProducts === 0) {
+            val = item.quantity
+        } else {
+            val = cartList.reduce((acc, item) => acc + Number(item.quantity), 0)
+        }
+
+        console.log(val)
+
+        setTotalProducts(val)
+        
         
     }
 

@@ -25,7 +25,7 @@ const Cart = () => {
                 <tbody>
 
                     {
-                        context.cartList?.map(([item]) => {
+                        context.cartList?.map((item) => {
                             return (
                             <tr className="h-32" key={item.title}>
                                 <td className="hidden pb-4 md:table-cell">

@@ -17,13 +17,9 @@ function CategoryListContainer() {
 
     }, [idCategory])
 
-    if (error) {
-        return (
-        <>
-            <p>Algo salio mal</p>
-        </>
-    )} else if (!!info) {
-        return (
+    if (error) return <p>Algo salio mal</p>
+    
+    if (!!info)  return (
         <div className="w-9/12 mx-auto my-16">
             <div className="flex flex-wrap -mx-1 lg:-mx-4"> 
                 { info.map((item) => {
@@ -45,13 +41,7 @@ function CategoryListContainer() {
             </div>
         </div>
         )
-    } 
-
-    return (
-        <>
-            <p>Cargando</p>
-        </>
-    )
+    else return <p>Cargando</p>
 
 
 }

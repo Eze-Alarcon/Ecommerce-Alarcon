@@ -52,25 +52,23 @@ function ItemDetailContainer({productInfo}) {
 					
 
 					{
-							(productInfo.category !== "jewelery")
-							?	<>
-									<div className="flex">
-										<span className="mr-2">Color</span>
-										<button onClick={colorbutton} type="button" value="White" className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-gray-300"></button>
-										<button onClick={colorbutton} type="button" value="Blue" className="border-2 border-gray-300 ml-2 bg-gray-700 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-blue-700/25"></button>
-										<button onClick={colorbutton} type="button" value="Red" className="border-2 border-gray-300 ml-2 bg-red-500 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-red-700/25"></button>
-									</div>
-								</>
-							: 	<></>
-						}
+						(productInfo.category !== "jewelery")
+						?	<div className="flex">
+								<span className="mr-2">Color</span>
+								<button onClick={colorbutton} type="button" value="White" className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-gray-300"></button>
+								<button onClick={colorbutton} type="button" value="Blue" className="border-2 border-gray-300 ml-2 bg-gray-700 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-blue-700/25"></button>
+								<button onClick={colorbutton} type="button" value="Red" className="border-2 border-gray-300 ml-2 bg-red-500 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-red-700/25"></button>
+							</div>
+						: 	<></>
+					}
 
 
 					
 					<div className="flex ml-3 items-center">
 
-						{
-							(productInfo.category !== "electronics")
-							?	<>
+					{
+						(productInfo.category !== "electronics")
+						?	<>
 								<span className="mr-2">Size</span>
 								<div className="relative">
 								<select value={size} onChange={tamanio} className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-8">
@@ -83,9 +81,10 @@ function ItemDetailContainer({productInfo}) {
 										<i className="fas fa-chevron-down"></i>
 									</span>
 								</div>
-								</>
-							: 	<></>
-						}
+							</>
+						: 	<></>
+					}
+
 					</div>
 					<ItemCount num={quantity} action={setQuantity} ></ItemCount>
 				</div>

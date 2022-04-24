@@ -8,7 +8,6 @@ function ItemDetailContainerLogic() {
     const [info, setInfo] = useState()
     const { idProduct } = useParams()
 
-
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${idProduct}`)
         .then(response => response.json())
@@ -18,22 +17,13 @@ function ItemDetailContainerLogic() {
     }, [idProduct])
 
 
-    if (error) {
-        return (
-        <>
-            <p>Algo salio mal</p>
-        </>
-    )} else if (info) { 
-        return (
-            <ItemDetailContainer productInfo={info} />
-        )
-    } 
-
-    return (
-        <>
-            <p>Cargando</p>
-        </>
-    )
+    if (error !== null) return  <p>Algo salio mal</p>
+    
+    if (info) {
+        return <ItemDetailContainer productInfo={info} />
+    } else {
+        return  <p>Cargando</p>
+    }
 
 }
 

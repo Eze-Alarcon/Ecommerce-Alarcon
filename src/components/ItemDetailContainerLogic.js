@@ -11,15 +11,10 @@ function ItemDetailContainerLogic() {
 
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${idProduct}`)
-
         .then(response => response.json())
         .then(response => setInfo(response))
-
-        .catch(error => {
-                setError(error)
-        })
-
-
+        
+        .catch(error => setError(error))
     }, [idProduct])
 
 
@@ -30,9 +25,7 @@ function ItemDetailContainerLogic() {
         </>
     )} else if (info) { 
         return (
-            <ItemDetailContainer 
-                productInfo={info}
-            />
+            <ItemDetailContainer productInfo={info} />
         )
     } 
 

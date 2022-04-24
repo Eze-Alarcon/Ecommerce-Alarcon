@@ -12,12 +12,6 @@ function ItemDetailContainer({productInfo}) {
 	const [onCart, setOnCart] = useState(false)
 	const context = useContext(CartContext)
 
-	useEffect(() => {
-		// setOnCart(context.cartList.includes((item) => {
-		// 	console.log(item)
-		// }))
-	})
-	
 	const saveForm = (e) => {
 		e.preventDefault()
 		setOnCart(true)
@@ -30,6 +24,10 @@ function ItemDetailContainer({productInfo}) {
 		})
 	}
 
+	useEffect(() => {
+		const checkItem = context.cartList.some(item => item.id === productInfo.id)
+		setOnCart(checkItem)
+	}, [context.cartList, productInfo])
 
 	const tamanio = (e) => setSize(e.target.value)
 

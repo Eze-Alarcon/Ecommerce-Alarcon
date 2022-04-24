@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Banner from './Banner'
 import Item  from './Item'
 
-function ItemListLogic() {
+function ItemList() {
     const [error, setError] = useState(null)
     const [info, setInfo] = useState()
 
@@ -58,4 +58,4 @@ function ItemListLogic() {
 }
 
 
-export default ItemListLogic
+export default ItemList

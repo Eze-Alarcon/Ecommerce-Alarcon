@@ -9,7 +9,6 @@ function CategoryListContainer() {
 
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/category/${idCategory}`)
-
         .then(response => response.json())
         .then(result => setInfo(result))
 
@@ -42,8 +41,6 @@ function CategoryListContainer() {
         </div>
         )
     else return <p>Cargando</p>
-
-
 }
 
 export default CategoryListContainer

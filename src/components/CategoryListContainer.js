@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { collection, getDocs, query, where } from "firebase/firestore";
+import db from './utils/firebaseConfig';
 import { useParams } from 'react-router-dom'
 import Item from './Item'
 
@@ -8,13 +10,25 @@ function CategoryListContainer() {
     const { idCategory } = useParams()
 
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/category/${idCategory}`)
-        .then(response => response.json())
-        .then(result => setInfo(result))
 
-        .catch(error => setError(error))
+        const fetchFirestone = async () => {            
+            const queryCategory = query(collection(db, "products"), where("category", "==", `${idCategory}`));
+            const queryToDatabase = await getDocs(queryCategory)
+
+            const dataFirestone = queryToDatabase.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+
+            return dataFirestone
+        }
+
+        fetchFirestone()
+            .then(result => setInfo(result))
+            .catch(err => setError(err))
 
     }, [idCategory])
+
 
     if (error) return <p>Algo salio mal</p>
     

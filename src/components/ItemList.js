@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { collection, getDocs } from "firebase/firestore";
+import db from './utils/firebaseConfig';
 import Banner from './Banner'
 import Item  from './Item'
 
@@ -7,14 +9,23 @@ function ItemList() {
     const [info, setInfo] = useState()
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
 
-        .then(response => response.json())
+        const fetchFirestone = async () => {
+            const queryToDatabase = await getDocs(collection(db, "products"));
+            const dataFirestone = queryToDatabase.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            return dataFirestone
+        }
+
+        fetchFirestone()
         .then(result => setInfo(result))
-
-        .catch(error => setError(error))
+        .catch(err => setError(err))
 
     }, [])
+    
+   
 
     if (error) {
         return (

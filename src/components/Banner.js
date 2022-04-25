@@ -9,7 +9,7 @@ const Banner = () => {
 
     return (
         <>
-            <div className="h-screen overflow-hidden flex items-center justify-center bg-[#edf2f7]"> 
+            <div className="h-[95vh] overflow-hidden flex items-center justify-center bg-[#edf2f7]"> 
             <div className="py-16 bg-white">
             <div  className="container m-auto px-6 space-y-8 text-gray-500 md:px-12 lg:px-20">
                 <div className="justify-center text-center gap-6 md:text-left md:flex lg:items-center  lg:gap-16">

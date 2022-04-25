@@ -6,7 +6,7 @@ function Navbar() {
         <>
         <header className="flex flex-wrap">
             <nav className="flex w-screen justify-between bg-gray-50 text-gray-600">
-                <div className="w-full px-12 py-6 flex space-x-12 items-center ">
+                <div className="w-full px-12 h-24 flex space-x-12 items-center ">
                     <Link to="/" className="text-2xl font-bold">
                         BRAND NAME
                     </Link>

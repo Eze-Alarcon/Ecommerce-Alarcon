@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar'
+import Footer from './components/Footer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import ItemList from './components/ItemList'
 import CategoryListContainer from './components/CategoryListContainer'
@@ -21,6 +22,7 @@ function App() {
 					<Route path="/cart" element={<Cart/>} />
 					<Route path="/about" element={<About/>} />
 				</Routes>
+				<Footer/>
 			</BrowserRouter>
 		</CartContextProvider>
 		</div>

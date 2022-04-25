@@ -7,28 +7,29 @@ import { CartContext } from "../context/CartContext"
 const Cart = () => {
     const context = useContext(CartContext)
 
+    let subtotal = context.cartList?.reduce((acc, item) => acc + Number(item.price), 0)
+    let shipping = (8).toFixed(2)
 
     return (
-        <>
-            <div className="flex flex-col justify-start items-start px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-                
-                <p className=" self-center mb-6 text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">Order Summary</p>
+        <div className="flex justify-evenly">
 
+            
+            <div className="flex flex-col justify-start items-start px-4 py-4 md:py-6 md:p-6 xl:p-8 w-8/12">
+                <p className="self-center text-lg md:text-xl font-semibold mb-6 leading-6 xl:leading-5 text-gray-800">Order Summary</p>
                 {
                     context.cartList?.map((item) => {
 
-                        let productCategory
+                    let productCategory
 
-                        if (item.category === "electronics") productCategory = "Electronics"
-                        if (item.category === "jewelery") productCategory = "Jewelery"
-                        if (item.category === "men's clothing") productCategory = "Men's clothing"
-                        if (item.category === "women's clothing") productCategory = "Women's clothing"
-
+                    if (item.category === "electronics") productCategory = "Electronics"
+                    if (item.category === "jewelery") productCategory = "Jewelery"
+                    if (item.category === "men's clothing") productCategory = "Men's clothing"
+                    if (item.category === "women's clothing") productCategory = "Women's clothing"
 
                     return (
                         <div key={`${item.id}-${item.size}-${item.color}`} className="mt-4 md:mb-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
                             <div className="flex justify-center items-center w-5/12 mx-auto my-6 md:my-0  md:w-28">
-                                <img className="w-8/12 md:block" src={item.image} alt="dress" />
+                                <img className="w-9/12 md:block" src={item.image} alt="dress" />
                             </div>
                             <div className="border-b border-gray-300 md:flex-row flex-col flex justify-between items-start w-full pb-8 ">
                                 <div className="w-full flex flex-col justify-start items-center space-y-8">
@@ -47,7 +48,6 @@ const Cart = () => {
                                 </div>
                                 <form onSubmit={(e) => context.removeItem(e)} data-id={item.id} data-color={item.color} data-size={item.size} data-identificator={item.identificator} className="self-center">
                                     <button type="submit" className="text-gray-700 hover:text-red-500">
-                                        {/* <small className="block">(Remove item)</small> */}
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
@@ -56,12 +56,37 @@ const Cart = () => {
                             </div>
                         </div>
                     )})
-
                 }
-
-
             </div>
-        </>
+
+            <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-3/12 space-y-6 mt-20 ml-2 border">
+                <h3 className="text-xl font-semibold mb-6 leading-5 text-gray-800">Summary</h3>
+                <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
+                    <div className="flex justify-between w-full">
+                        <p className="text-base leading-4 text-gray-800">SUBTOTAL</p>
+                        <p className="text-base leading-4 text-gray-600">$ {(subtotal * 1.3).toFixed(2)}</p>
+                    </div>
+                    <div className="flex justify-between items-center w-full">
+                        <p className="text-base leading-4 text-gray-800">DISCOUNT (30%)</p>
+                        <p className="text-base leading-4 text-gray-600">- $ {(subtotal * 0.3).toFixed(2)}</p>
+                    </div>
+                    <div className="flex justify-between items-center w-full">
+                        <p className="text-base leading-4 text-gray-800">{context.totalProducts} ITEMS</p>
+                        <p className="text-base leading-4 text-gray-600">$ {(subtotal).toFixed(2)}</p>
+                    </div>
+                    <div className="flex justify-between items-center w-full">
+                        <p className="text-base leading-4 text-gray-800">SHIPPING</p>
+                        <p className="text-base leading-4 text-gray-600">$ {shipping}</p>
+                    </div>
+                </div>
+                <div className="flex justify-between items-center w-full">
+                    <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
+                    <p className="text-base font-semibold leading-4 text-gray-600">$ {(subtotal + Number(shipping)).toFixed(2)}</p>
+                </div>
+            </div>
+
+
+        </div>
     )
 } 
 

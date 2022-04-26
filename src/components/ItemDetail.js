@@ -26,6 +26,8 @@ function ItemDetail({productInfo}) {
 
 	useEffect(() => {
 		const checkItem = context.cartList.some(item => item.id === productInfo.id)
+		console.table(productInfo)
+		console.log("CheckItem", checkItem)
 		setOnCart(checkItem)
 	}, [context.cartList, productInfo])
 
@@ -54,10 +56,19 @@ function ItemDetail({productInfo}) {
 					{
 						(productInfo.category !== "jewelery")
 						?	<div className="flex">
-								<span className="mr-2">Color</span>
-								<button onClick={colorbutton} type="button" value="White" className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-gray-300"></button>
-								<button onClick={colorbutton} type="button" value="Blue" className="border-2 border-gray-300 ml-2 bg-gray-700 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-blue-700/25"></button>
-								<button onClick={colorbutton} type="button" value="Red" className="border-2 border-gray-300 ml-2 bg-red-500 rounded-full w-6 h-6 focus:outline-none focus:ring focus:ring-red-700/25"></button>
+								<span className="flex">Color</span>
+								<fieldset id="colors" onChange={colorbutton}>
+
+									<input type="radio" value="White" name="colors" 
+										className="w-5 h-5 ml-2 text-gray-500  bg-gray-300 hover:bg-gray-400 checked:bg-gray-500 focus:ring-transparent"/>
+
+									<input type="radio" value="Blue" name="colors" 
+										className="w-5 h-5 ml-2 text-blue-600 hover:bg-blue-900 bg-blue-600 checked:bg-blue-100 focus:ring-transparent"/>
+
+									<input type="radio" value="Red" name="colors" 
+										className="w-5 h-5 ml-2 text-red-600 hover:bg-red-400 bg-red-600 checked:bg-red-500 focus:ring-transparent"/>
+
+								</fieldset>
 							</div>
 						: 	<></>
 					}
@@ -71,7 +82,7 @@ function ItemDetail({productInfo}) {
 						?	<>
 								<span className="mr-2">Size</span>
 								<div className="relative">
-								<select value={size} onChange={tamanio} className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-8">
+								<select value={size} onChange={tamanio} className="rounded border appearance-none border-gray-400 py-2 focus:outline-none text-base pl-3 pr-8">
 									<option value="SM">SM</option>
 									<option value="M">M</option>
 									<option value="L">L</option>

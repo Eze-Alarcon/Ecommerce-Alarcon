@@ -11,7 +11,7 @@ const Cart = () => {
     let shipping = (8).toFixed(2)
 
     return (
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly min-h-[80vh]">
 
             
             <div className="flex flex-col justify-start items-start px-4 py-4 md:py-6 md:p-6 xl:p-8 w-8/12">
@@ -59,7 +59,7 @@ const Cart = () => {
                 }
             </div>
 
-            <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-3/12 space-y-6 mt-20 ml-2 border h-[325px]">
+            <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-3/12 space-y-6 mt-20 ml-2 border h-[375px]">
                 <h3 className="text-xl font-semibold mb-6 leading-5 text-gray-800">Summary</h3>
                 <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
                     <div className="flex justify-between w-full">
@@ -83,6 +83,13 @@ const Cart = () => {
                     <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
                     <p className="text-base font-semibold leading-4 text-gray-600">$ {(subtotal + Number(shipping)).toFixed(2)}</p>
                 </div>
+
+                <button type="submit" className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-black shadow-md hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2">
+                    <span className="w-full">
+                        Checkout
+                    </span>
+                </button>
+
             </div>
 
 

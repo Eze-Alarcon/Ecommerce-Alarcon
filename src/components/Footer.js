@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Footer = () => {
     return (
-        <footer className="h-24 flex items-center bg-gray-900">
+        <footer className="h-24 absolute right-0 left-0 bottom-0  flex items-center bg-gray-900">
                 <div className="flex flex-row justify-around items-center w-full">
                     <div className="text-center text-gray-100">
                         <a href="https://github.com/Eze-Alarcon/Ecommerce-Alarcon" target="blank" className="flex items-center space-x-3 hover:text-gray-400 transition">

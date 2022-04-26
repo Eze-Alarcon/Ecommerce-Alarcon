@@ -13,7 +13,10 @@ function ItemDetailContainer() {
     useEffect(() => {
         const fetchFirestone = async () => {   
             const specificQuery = await getDoc(doc(db, "products", `${idProduct}`))
-            return specificQuery.data()
+            return {
+                ...specificQuery.data(),
+                id: idProduct
+            }
         }
 
         fetchFirestone()

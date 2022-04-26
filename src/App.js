@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar'
-import Footer from './components/Footer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import ItemList from './components/ItemList'
 import CategoryListContainer from './components/CategoryListContainer'
@@ -9,9 +8,12 @@ import Cart from './components/Cart';
 import About from './components/About';
 import CartContextProvider from './context/CartContext';
 
+
+// import Footer from './components/Footer';
+
 function App() {
 	return (
-		<div className="App">
+		<div className="App relative min-h-screen">
 		<CartContextProvider>
 			<BrowserRouter> 
 				<Navbar/>
@@ -22,7 +24,7 @@ function App() {
 					<Route path="/cart" element={<Cart/>} />
 					<Route path="/about" element={<About/>} />
 				</Routes>
-				<Footer/>
+				{/* <Footer/> */}
 			</BrowserRouter>
 		</CartContextProvider>
 		</div>

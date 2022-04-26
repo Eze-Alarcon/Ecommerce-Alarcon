@@ -25,9 +25,12 @@ function ItemDetail({productInfo}) {
 	}
 
 	useEffect(() => {
-		const checkItem = context.cartList.some(item => item.id === productInfo.id)
+		const checkItem = context.cartList.some(item => {
+			console.log("Item a comparar", item)
+			return item.id === productInfo.id
+		})
 		console.table(productInfo)
-		console.log("CheckItem", checkItem)
+		console.log("CheckItem es: ", checkItem)
 		setOnCart(checkItem)
 	}, [context.cartList, productInfo])
 

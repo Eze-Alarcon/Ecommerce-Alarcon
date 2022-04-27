@@ -11,6 +11,9 @@ function ItemDetail({productInfo}) {
 	const [quantity, setQuantity] = useState(1)
 	const [onCart, setOnCart] = useState(false)
 	const context = useContext(CartContext)
+	const [colorStock, setColorStock] = useState(productInfo.stock.White)
+	// console.log(productInfo.stock.White)
+	// console.log(colorStock)
 
 	const saveForm = (e) => {
 		e.preventDefault()
@@ -31,7 +34,10 @@ function ItemDetail({productInfo}) {
 
 	const tamanio = (e) => setSize(e.target.value)
 
-	const colorbutton = (e) => setColor(e.target.value)
+	const colorbutton = (e) => {
+		setColor(e.target.value)
+		setColorStock(productInfo.stock[color])
+	}
 
     return (
 
@@ -41,11 +47,14 @@ function ItemDetail({productInfo}) {
 			<form onSubmit={saveForm} className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0"> 
 					<h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
 					<h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{productInfo.title}</h1>
-					<div className="flex mb-4">
+					<div className="flex justify-between mb-4 w-full">
 						<span className="flex items-center">
-							<Star stars={productInfo.rating.rate}/>
-							<span className="text-gray-600 ml-3">{productInfo.rating.count} Reviews</span>
+							<div>
+								<Star stars={productInfo.rating.rate}/>
+								<span className="text-gray-600 ml-3">{productInfo.rating.count} Reviews</span>
+							</div>
 						</span>
+						<span className="text-gray-600 ml-3">{colorStock} {color} units </span>
 					</div>
 				<p className="leading-relaxed">{productInfo.description}</p>
 				<div className="flex mt-6 justify-between items-center pb-5 border-b-2 border-gray-200 mb-5">
@@ -57,7 +66,7 @@ function ItemDetail({productInfo}) {
 								<span className="flex">Color</span>
 								<fieldset id="colors" onChange={colorbutton}>
 
-									<input type="radio" value="White" name="colors" 
+									<input type="radio" value="White" name="colors" defaultChecked={true}
 										className="w-5 h-5 ml-2 text-gray-500  bg-gray-300 hover:bg-gray-400 checked:bg-gray-500 focus:ring-transparent"/>
 
 									<input type="radio" value="Blue" name="colors" 
@@ -95,7 +104,7 @@ function ItemDetail({productInfo}) {
 					}
 
 					</div>
-					<ItemCount num={quantity} action={setQuantity} ></ItemCount>
+					<ItemCount num={quantity} action={setQuantity}/>
 				</div>
 				<div className="flex">
 					<span className="title-font font-medium text-2xl text-gray-900">$ {productInfo.price}</span>

@@ -1,6 +1,6 @@
-function ItemCount({num, action}) {
+function ItemCount({num, action, stock}) {
     
-    const increase = () => (num < 5) && action(num + 1)
+    const increase = () => (num < stock) && action(num + 1)
 
     const decrease = () => (num > 1) && action(num - 1)
 

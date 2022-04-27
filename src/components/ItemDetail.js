@@ -12,8 +12,6 @@ function ItemDetail({productInfo}) {
 	const [onCart, setOnCart] = useState(false)
 	const context = useContext(CartContext)
 	const [colorStock, setColorStock] = useState(productInfo.stock.White)
-	// console.log(productInfo.stock.White)
-	// console.log(colorStock)
 
 	const saveForm = (e) => {
 		e.preventDefault()
@@ -37,6 +35,7 @@ function ItemDetail({productInfo}) {
 	const colorbutton = (e) => {
 		setColor(e.target.value)
 		setColorStock(productInfo.stock[color])
+		setQuantity(1)
 	}
 
     return (
@@ -104,7 +103,11 @@ function ItemDetail({productInfo}) {
 					}
 
 					</div>
-					<ItemCount num={quantity} action={setQuantity}/>
+					<ItemCount 
+						num={quantity} 
+						action={setQuantity}
+						stock={colorStock}	
+					/>
 				</div>
 				<div className="flex">
 					<span className="title-font font-medium text-2xl text-gray-900">$ {productInfo.price}</span>

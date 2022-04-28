@@ -42,6 +42,9 @@ const Cart = () => {
     const checkout = () => {
         setModal((prevState) => !prevState)
         if (context.cartList.length === 0) return 
+    }
+
+    const payment = () => {
         let order = {
             buyer: {
                 ...data
@@ -58,7 +61,7 @@ const Cart = () => {
             }),
             total: subtotal
         }
-        
+
         console.log(order)
 
         const crateOrder = async () => {
@@ -159,7 +162,7 @@ const Cart = () => {
                 {
                     !modal  
                         ? <></>
-                        : <CartModal saveInfo={setData}/>
+                        : <CartModal pay={payment} closeModal={setModal} saveInfo={setData}/>
                 }
 
         </main>

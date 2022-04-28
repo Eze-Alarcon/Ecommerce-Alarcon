@@ -1,4 +1,4 @@
-const CartModal = ({saveInfo}) => {
+const CartModal = ({closeModal, saveInfo, pay}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -14,8 +14,12 @@ const CartModal = ({saveInfo}) => {
                 }
             }
         })
-        
+        pay()
     } 
+
+    const close = () => {
+        closeModal((prevState) => !prevState)
+    }
 
     return (
         <form onSubmit={(e) => handleSubmit(e)} className="z-10 absolute w-[50vw] py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
@@ -79,10 +83,10 @@ const CartModal = ({saveInfo}) => {
             </div>
 
             <div className="flex items-center justify-between w-full">
-                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">
+                <button type="button" onClick={close} className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">
                     Cancel
                 </button>
-                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+                <button type="submit" className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
                     Pay
                 </button>
             </div>

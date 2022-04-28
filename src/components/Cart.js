@@ -40,8 +40,8 @@ const Cart = () => {
     }
 
     const checkout = () => {
-        setModal((prevState) => !prevState)
         if (context.cartList.length === 0) return 
+        setModal((prevState) => !prevState)
     }
 
     const payment = () => {
@@ -133,22 +133,36 @@ const Cart = () => {
                         <p className="text-base leading-4 text-gray-800">SUBTOTAL</p>
                         <p className="text-base leading-4 text-gray-600">$ {(subtotal * 1.3).toFixed(2)}</p>
                     </div>
-                    <div className="flex justify-between items-center w-full">
-                        <p className="text-base leading-4 text-gray-800">DISCOUNT (30%)</p>
-                        <p className="text-base leading-4 text-gray-600">- $ {(subtotal * 0.3).toFixed(2)}</p>
-                    </div>
+                    {
+                        context.cartList.length > 0 
+                            && <div className="flex justify-between items-center w-full">
+                                    <p className="text-base leading-4 text-gray-800">DISCOUNT (30%)</p>
+                                    <p className="text-base leading-4 text-gray-600">- $ {(subtotal * 0.3).toFixed(2)}</p>
+                                </div>
+                    }
                     <div className="flex justify-between items-center w-full">
                         <p className="text-base leading-4 text-gray-800">{context.totalProducts} ITEMS</p>
                         <p className="text-base leading-4 text-gray-600">$ {((subtotal)).toFixed(2)}</p>
                     </div>
                     <div className="flex justify-between items-center w-full">
                         <p className="text-base leading-4 text-gray-800">SHIPPING</p>
-                        <p className="text-base leading-4 text-gray-600">$ {SHIPPING.toFixed(2)}</p>
+                        <p className="text-base leading-4 text-gray-600">
+                            $ {
+                                context.cartList.length === 0
+                                ? "0.00"
+                                : SHIPPING.toFixed(2)
+                            }
+                        </p>
                     </div>
                 </div>
                 <div className="flex justify-between items-center w-full">
                     <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
-                    <p className="text-base font-semibold leading-4 text-gray-600">$ {((subtotal) + Number(SHIPPING)).toFixed(2)}</p>
+                    <p className="text-base font-semibold leading-4 text-gray-600">
+                        $ {context.cartList.length === 0
+                            ? "0.00"
+                            : ((subtotal) + Number(SHIPPING)).toFixed(2)    
+                        }
+                    </p>
                 </div>
 
                 <button type="button" onClick={checkout} className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-black shadow-md hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2">

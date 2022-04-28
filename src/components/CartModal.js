@@ -22,17 +22,17 @@ const CartModal = ({closeModal, saveInfo, pay}) => {
     }
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)} className="z-10 absolute w-[50vw] py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+        <form onSubmit={(e) => handleSubmit(e)} className="z-10 absolute w-[30vw] text-left py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
             <div className="w-full flex justify-start text-gray-600 mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
             </div>
-            <h1 className="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">
+            <h1 className="text-gray-800 text-center font-lg font-bold tracking-normal leading-tight mb-4">
                 Enter Billing Details
             </h1>
 
-            <label htmlFor="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+            <label htmlFor="name" className="w-full text-left text-gray-800 text-sm font-bold leading-tight tracking-normal">
                 Name
             </label>
             <input id="name" required className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="James" />

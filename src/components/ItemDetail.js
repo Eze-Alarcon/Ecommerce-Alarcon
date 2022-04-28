@@ -3,8 +3,7 @@ import { ItemCount } from './ItemCount'
 import Star from './Stars'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../context/CartContext'
-// import { doc, updateDoc, increment, onSnapshot } from "firebase/firestore";
-// import db from './utils/firebaseConfig';
+
 
 function ItemDetail({productInfo}) {
 	const [color, setColor] = useState("White")
@@ -12,6 +11,7 @@ function ItemDetail({productInfo}) {
 	const [quantity, setQuantity] = useState(1)
 	const [onCart, setOnCart] = useState(false)
 	const [colorStock, setColorStock] = useState(productInfo.stock.White)
+	const [disabled, setDisabled] = useState(false)
 	const context = useContext(CartContext)
 
 	const saveForm = (e) => {
@@ -33,7 +33,9 @@ function ItemDetail({productInfo}) {
 	useEffect(() => {
 		setColorStock(() => productInfo.stock[color])
 		setQuantity(() => 1)
-	}, [productInfo, color])
+		if (productInfo.stock[color] === 0) setDisabled(() => true)
+		else setDisabled(() => false)
+	}, [productInfo, color, disabled])
 
 	useEffect(() => {
 		const checkItem = context.cartList.some(item => item.id === productInfo.id)
@@ -72,7 +74,7 @@ function ItemDetail({productInfo}) {
 										className="w-5 h-5 ml-2 text-gray-500  bg-gray-300 hover:bg-gray-400 checked:bg-gray-500 focus:ring-transparent disabled:hidden"/>
 
 									<input type="radio" value="Blue" name="colors" disabled={productInfo.stock.Blue < 1}
-										className=" w-5 h-5 ml-2 text-blue-600 hover:bg-blue-900 bg-blue-600 checked:bg-blue-100 focus:ring-transparent disabled:hidden"/>
+										className=" w-5 h-5 ml-2 text-blue-600 hover:bg-blue-900 bg-blue-600 checked:bg-blue-400 focus:ring-transparent disabled:hidden"/>
 
 									<input type="radio" value="Red" name="colors" disabled={productInfo.stock.Red < 1}
 										className="w-5 h-5 ml-2 text-red-600 hover:bg-red-400 bg-red-600 checked:bg-red-500 focus:ring-transparent disabled:hidden"/>
@@ -116,10 +118,18 @@ function ItemDetail({productInfo}) {
 					<span className="title-font font-medium text-2xl text-gray-900">$ {productInfo.price}</span>
 					{
 						!onCart
-						? <button type="submit" className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Agregar al carrito</button>
+						? <button type="submit" disabled={disabled} 
+							className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded disabled:bg-gray-400 disabled:text-black disabled:font-bold">
+							{
+								!disabled
+									? "Agregar al carrito"
+									: "Producto sin stock"
+							}
+						</button>
 						: 	<>
 								<Link to="/Cart" className="flex ml-auto"><button type="button" className=" text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Item en carrito</button></Link>
-								<button type="submit" className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Agregar al carrito</button>
+								<button type="submit" disabled={disabled}
+									className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Agregar al carrito</button>
 							</>
 					}
 				</div>
@@ -130,3 +140,15 @@ function ItemDetail({productInfo}) {
 }
 
 export default ItemDetail
+
+
+/* 
+
+	<>
+		{
+			!!disabled
+			? <button type="submit" disabled={disabled} className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded disabled:content">Agregar al carrito</button>
+			: <button type="submit" disabled={disabled} className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded disabled:content">Carrito lleno</button>
+		}
+	</>
+*/

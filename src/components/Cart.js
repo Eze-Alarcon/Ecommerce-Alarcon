@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { CartContext } from "../context/CartContext"
 import { doc, setDoc, serverTimestamp, collection, updateDoc, increment } from "firebase/firestore";
 import db from './utils/firebaseConfig'
+import CartModal from "./CartModal";
 
 
 
@@ -10,7 +11,9 @@ import db from './utils/firebaseConfig'
 const Cart = () => {
     const context = useContext(CartContext)
     const [subtotal, setSubtotal] = useState(0)
-    let shipping = 8
+    const [modal, setModal] = useState(false)
+    const [data, setData] = useState("")
+    const SHIPPING = 8
 
     useEffect(() => {
         let x = context.cartList?.reduce((acc, item) => acc + (Number(item.price) * (item.quantity)), 0)
@@ -37,11 +40,11 @@ const Cart = () => {
     }
 
     const checkout = () => {
+        setModal((prevState) => !prevState)
+        if (context.cartList.length === 0) return 
         let order = {
             buyer: {
-                name: "someone",
-                email: "someone@gmail.com",
-                phone: 123456789,
+                ...data
             },
             date: serverTimestamp(),
             items: context.cartList.map((item) => {
@@ -55,6 +58,8 @@ const Cart = () => {
             }),
             total: subtotal
         }
+        
+        console.log(order)
 
         const crateOrder = async () => {
             const orderRef = doc(collection(db, "orders"))
@@ -70,7 +75,7 @@ const Cart = () => {
     }
 
     return (
-        <main className="flex justify-evenly min-h-[80vh]">
+        <main className="flex justify-evenly min-h-[80vh] relative z-0">
 
             
             <section className="flex flex-col justify-start items-start px-4 py-4 md:py-6 md:p-6 xl:p-8 w-8/12">
@@ -135,12 +140,12 @@ const Cart = () => {
                     </div>
                     <div className="flex justify-between items-center w-full">
                         <p className="text-base leading-4 text-gray-800">SHIPPING</p>
-                        <p className="text-base leading-4 text-gray-600">$ {shipping.toFixed(2)}</p>
+                        <p className="text-base leading-4 text-gray-600">$ {SHIPPING.toFixed(2)}</p>
                     </div>
                 </div>
                 <div className="flex justify-between items-center w-full">
                     <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
-                    <p className="text-base font-semibold leading-4 text-gray-600">$ {((subtotal) + Number(shipping)).toFixed(2)}</p>
+                    <p className="text-base font-semibold leading-4 text-gray-600">$ {((subtotal) + Number(SHIPPING)).toFixed(2)}</p>
                 </div>
 
                 <button type="button" onClick={checkout} className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-black shadow-md hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2">
@@ -151,6 +156,11 @@ const Cart = () => {
 
             </aside>
 
+                {
+                    !modal  
+                        ? <></>
+                        : <CartModal saveInfo={setData}/>
+                }
 
         </main>
     )

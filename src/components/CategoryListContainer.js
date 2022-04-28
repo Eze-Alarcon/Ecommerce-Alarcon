@@ -3,6 +3,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import db from './utils/firebaseConfig';
 import { useParams } from 'react-router-dom'
 import Item from './Item'
+import ErrorPage from './ErrorPage'
 
 function CategoryListContainer() {
     const [error, setError] = useState(null)
@@ -30,7 +31,7 @@ function CategoryListContainer() {
     }, [idCategory])
 
 
-    if (error) return <p>Algo salio mal</p>
+    if (error !== null) return  <ErrorPage/>
     
     if (!!info)  return (
         <div className="w-9/12 mx-auto my-16">

@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import db from './utils/firebaseConfig';
 import Banner from './Banner'
 import Item  from './Item'
+import ErrorPage from './ErrorPage'
 
 function ItemList() {
     const [error, setError] = useState(null)
@@ -27,45 +28,35 @@ function ItemList() {
     
    
 
-    if (error) {
-        return (
+    if (error) return <ErrorPage/>
+    
+    if (!!info) return (
         <>
-            <p>Algo salio mal</p>
-        </>
-    )} else if (!!info) {
-        return (
-        <>
-        <Banner/>
-        <div className="w-9/12 mx-auto my-16" id="content">
-            <div className="flex flex-wrap -mx-1 lg:-mx-4"> 
-        { info.map((item) => {
-            return (
-                <Item
-                    title={item.title} 
-                    description={item.description} 
-                    image={item.image} 
-                    price={item.price}
-                    category={item.category}
-                    rate={item.rating.rate}
-                    count={item.rating.count}
-                    id={item.id}
-                    key={item.id} 
-                    />
-                        
-                    )}
-                    )} 
+            <Banner/>
+            <div className="w-9/12 mx-auto my-16" id="content">
+                <div className="flex flex-wrap -mx-1 lg:-mx-4"> 
+            { info.map((item) => {
+                return (
+                    <Item
+                        title={item.title} 
+                        description={item.description} 
+                        image={item.image} 
+                        price={item.price}
+                        category={item.category}
+                        rate={item.rating.rate}
+                        count={item.rating.count}
+                        id={item.id}
+                        key={item.id} 
+                        />
+                            
+                        )}
+                        )} 
+                </div>
             </div>
-        </div>
         </>
         )
-    } 
 
-    return (
-        <>
-            <p>Cargando</p>
-        </>
-    )
-
+    return <p>Cargando</p>
 }
 
 

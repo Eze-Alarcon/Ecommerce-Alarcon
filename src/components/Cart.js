@@ -32,8 +32,6 @@ const Cart = () => {
     }
 
     const payment = () => {
-
-        console.log(data)
         let order = {
             buyer: {
                 ...data

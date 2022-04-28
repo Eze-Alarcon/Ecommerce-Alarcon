@@ -3,6 +3,7 @@ import { doc, getDoc } from "firebase/firestore";
 import db from './utils/firebaseConfig';
 import { useParams } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
+import ErrorPage from './ErrorPage'
 
 
 function ItemDetailContainer() {
@@ -25,7 +26,7 @@ function ItemDetailContainer() {
 
     }, [idProduct])
 
-    if (error !== null) return  <p>Algo salio mal</p>
+    if (error !== null) return  <ErrorPage/>
     
     if (info) {
         return <ItemDetail productInfo={info} />

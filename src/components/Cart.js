@@ -5,14 +5,11 @@ import { doc, setDoc, serverTimestamp, collection, updateDoc, increment } from "
 import db from './utils/firebaseConfig'
 import CartModal from "./CartModal";
 
-
-
-
 const Cart = () => {
     const context = useContext(CartContext)
     const [subtotal, setSubtotal] = useState(0)
     const [modal, setModal] = useState(false)
-    const [data, setData] = useState("")
+    const [data, setData] = useState({})
     const SHIPPING = 8
 
     useEffect(() => {
@@ -23,28 +20,20 @@ const Cart = () => {
     const updateDB = () => {
         context.cartList.forEach(async (item) => {
             const productRef = doc(db, "products", item.id);
-            switch (item.color) {
-                case "White":
-                    await updateDoc(productRef, {"stock.White": increment(-item.quantity)})
-                    break
-                case "Blue":
-                    await updateDoc(productRef, {"stock.Blue": increment(-item.quantity)})
-                    break
-                case "Red":
-                    await updateDoc(productRef, {"stock.Red": increment(-item.quantity)})
-                    break
-                default: 
-                    throw new Error()
-            }
+            item.color === "White" && await updateDoc(productRef, {"stock.White": increment(-item.quantity)})
+            item.color === "Blue" && await updateDoc(productRef, {"stock.Blue": increment(-item.quantity)})
+            item.color === "Red" && await updateDoc(productRef, {"stock.Red": increment(-item.quantity)})
         })
     }
 
     const checkout = () => {
-        if (context.cartList.length === 0) return 
         setModal((prevState) => !prevState)
+        if (context.cartList.length === 0) return 
     }
 
     const payment = () => {
+
+        console.log(data)
         let order = {
             buyer: {
                 ...data
@@ -74,6 +63,7 @@ const Cart = () => {
         crateOrder()
         .then(result => alert(`Su orden fue generada bajo el id: ${result.id}`))
             .then(context.removeAllItems())
+            .then(setModal((prevState) => !prevState))
             .catch(err => console.log(err))
     }
 
@@ -133,13 +123,13 @@ const Cart = () => {
                         <p className="text-base leading-4 text-gray-800">SUBTOTAL</p>
                         <p className="text-base leading-4 text-gray-600">$ {(subtotal * 1.3).toFixed(2)}</p>
                     </div>
-                    {
-                        context.cartList.length > 0 
-                            && <div className="flex justify-between items-center w-full">
-                                    <p className="text-base leading-4 text-gray-800">DISCOUNT (30%)</p>
-                                    <p className="text-base leading-4 text-gray-600">- $ {(subtotal * 0.3).toFixed(2)}</p>
-                                </div>
-                    }
+                        {
+                            context.cartList.length > 0 
+                                && <div className="flex justify-between items-center w-full">
+                                        <p className="text-base leading-4 text-gray-800">DISCOUNT (30%)</p>
+                                        <p className="text-base leading-4 text-gray-600">- $ {(subtotal * 0.3).toFixed(2)}</p>
+                                    </div>
+                        }
                     <div className="flex justify-between items-center w-full">
                         <p className="text-base leading-4 text-gray-800">{context.totalProducts} ITEMS</p>
                         <p className="text-base leading-4 text-gray-600">$ {((subtotal)).toFixed(2)}</p>

@@ -2,8 +2,8 @@ const CartModal = ({closeModal, saveInfo, pay}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        saveInfo(() => {
-            return {
+        pay(() => {
+            saveInfo({
                 name: e.target[0].value,
                 email: e.target[1].value,
                 phone: e.target[2].value,
@@ -12,9 +12,8 @@ const CartModal = ({closeModal, saveInfo, pay}) => {
                     expirationDate: e.target[4].value,
                     cvc: e.target[5].value
                 }
-            }
+            })
         })
-        pay()
     } 
 
     const close = () => {

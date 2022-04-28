@@ -1,7 +1,7 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { CartContext } from "../context/CartContext"
-import { doc, setDoc, serverTimestamp, collection } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp, collection, updateDoc, increment } from "firebase/firestore";
 import db from './utils/firebaseConfig'
 
 
@@ -9,9 +9,32 @@ import db from './utils/firebaseConfig'
 
 const Cart = () => {
     const context = useContext(CartContext)
+    const [subtotal, setSubtotal] = useState(0)
+    let shipping = 8
 
-    let subtotal = context.cartList?.reduce((acc, item) => acc + Number(item.price), 0)
-    let shipping = (8).toFixed(2)
+    useEffect(() => {
+        let x = context.cartList?.reduce((acc, item) => acc + (Number(item.price) * (item.quantity)), 0)
+        setSubtotal(x)
+    },[context])
+
+    const updateDB = () => {
+        context.cartList.forEach(async (item) => {
+            const productRef = doc(db, "products", item.id);
+            switch (item.color) {
+                case "White":
+                    await updateDoc(productRef, {"stock.White": increment(-item.quantity)})
+                    break
+                case "Blue":
+                    await updateDoc(productRef, {"stock.Blue": increment(-item.quantity)})
+                    break
+                case "Red":
+                    await updateDoc(productRef, {"stock.Red": increment(-item.quantity)})
+                    break
+                default: 
+                    throw new Error()
+            }
+        })
+    }
 
     const checkout = () => {
         let order = {
@@ -36,11 +59,13 @@ const Cart = () => {
         const crateOrder = async () => {
             const orderRef = doc(collection(db, "orders"))
             await setDoc(orderRef, order)
+            updateDB()
             return orderRef;
         }
 
         crateOrder()
-            .then(result => console.log(result.id))
+        .then(result => alert(`Su orden fue generada bajo el id: ${result.id}`))
+            .then(context.removeAllItems())
             .catch(err => console.log(err))
     }
 
@@ -106,16 +131,16 @@ const Cart = () => {
                     </div>
                     <div className="flex justify-between items-center w-full">
                         <p className="text-base leading-4 text-gray-800">{context.totalProducts} ITEMS</p>
-                        <p className="text-base leading-4 text-gray-600">$ {(subtotal).toFixed(2)}</p>
+                        <p className="text-base leading-4 text-gray-600">$ {((subtotal)).toFixed(2)}</p>
                     </div>
                     <div className="flex justify-between items-center w-full">
                         <p className="text-base leading-4 text-gray-800">SHIPPING</p>
-                        <p className="text-base leading-4 text-gray-600">$ {shipping}</p>
+                        <p className="text-base leading-4 text-gray-600">$ {shipping.toFixed(2)}</p>
                     </div>
                 </div>
                 <div className="flex justify-between items-center w-full">
                     <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
-                    <p className="text-base font-semibold leading-4 text-gray-600">$ {(subtotal + Number(shipping)).toFixed(2)}</p>
+                    <p className="text-base font-semibold leading-4 text-gray-600">$ {((subtotal) + Number(shipping)).toFixed(2)}</p>
                 </div>
 
                 <button type="button" onClick={checkout} className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-black shadow-md hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2">

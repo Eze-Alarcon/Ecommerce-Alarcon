@@ -3,15 +3,16 @@ import { ItemCount } from './ItemCount'
 import Star from './Stars'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../context/CartContext'
-
+// import { doc, updateDoc, increment, onSnapshot } from "firebase/firestore";
+// import db from './utils/firebaseConfig';
 
 function ItemDetail({productInfo}) {
 	const [color, setColor] = useState("White")
 	const [size, setSize] = useState("SM")
 	const [quantity, setQuantity] = useState(1)
 	const [onCart, setOnCart] = useState(false)
-	const context = useContext(CartContext)
 	const [colorStock, setColorStock] = useState(productInfo.stock.White)
+	const context = useContext(CartContext)
 
 	const saveForm = (e) => {
 		e.preventDefault()
@@ -25,18 +26,20 @@ function ItemDetail({productInfo}) {
 		})
 	}
 
+	const tamanio = (e) => setSize(e.target.value)
+
+	const colorbutton = (e) => setColor(e.target.value)
+
+	useEffect(() => {
+		setColorStock(() => productInfo.stock[color])
+		setQuantity(() => 1)
+	}, [productInfo, color])
+
 	useEffect(() => {
 		const checkItem = context.cartList.some(item => item.id === productInfo.id)
 		setOnCart(checkItem)
 	}, [context.cartList, productInfo])
 
-	const tamanio = (e) => setSize(e.target.value)
-
-	const colorbutton = (e) => {
-		setColor(e.target.value)
-		setColorStock(productInfo.stock[color])
-		setQuantity(1)
-	}
 
     return (
 
@@ -64,15 +67,15 @@ function ItemDetail({productInfo}) {
 						?	<div className="flex">
 								<span className="flex">Color</span>
 								<fieldset id="colors" onChange={colorbutton}>
+						
+									<input type="radio" value="White" name="colors" defaultChecked={true} disabled={productInfo.stock.White < 1}
+										className="w-5 h-5 ml-2 text-gray-500  bg-gray-300 hover:bg-gray-400 checked:bg-gray-500 focus:ring-transparent disabled:hidden"/>
 
-									<input type="radio" value="White" name="colors" defaultChecked={true}
-										className="w-5 h-5 ml-2 text-gray-500  bg-gray-300 hover:bg-gray-400 checked:bg-gray-500 focus:ring-transparent"/>
+									<input type="radio" value="Blue" name="colors" disabled={productInfo.stock.Blue < 1}
+										className=" w-5 h-5 ml-2 text-blue-600 hover:bg-blue-900 bg-blue-600 checked:bg-blue-100 focus:ring-transparent disabled:hidden"/>
 
-									<input type="radio" value="Blue" name="colors" 
-										className="w-5 h-5 ml-2 text-blue-600 hover:bg-blue-900 bg-blue-600 checked:bg-blue-100 focus:ring-transparent"/>
-
-									<input type="radio" value="Red" name="colors" 
-										className="w-5 h-5 ml-2 text-red-600 hover:bg-red-400 bg-red-600 checked:bg-red-500 focus:ring-transparent"/>
+									<input type="radio" value="Red" name="colors" disabled={productInfo.stock.Red < 1}
+										className="w-5 h-5 ml-2 text-red-600 hover:bg-red-400 bg-red-600 checked:bg-red-500 focus:ring-transparent disabled:hidden"/>
 
 								</fieldset>
 							</div>

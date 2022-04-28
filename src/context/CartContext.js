@@ -45,12 +45,15 @@ const CartContextProvider = ({children}) => {
         setCartList(cartList.filter(product => product.identificator !== identificator))
     } 
 
+    const removeAllItems = () => setCartList([])
+
     return (
         <CartContext.Provider value={{
             cartList, 
             addToCart, 
             removeItem,
             totalProducts,
+            removeAllItems
         }}>
             {children}
         </CartContext.Provider>

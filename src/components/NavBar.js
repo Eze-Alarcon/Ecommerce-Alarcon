@@ -4,9 +4,9 @@ import  { CartWidget } from './CartWidget'
 function Navbar() {
     return(
         <>
-        <header className="flex flex-wrap">
-            <nav className="flex w-screen justify-between bg-gray-50 text-gray-600">
-                <div className="w-full px-12 h-24 flex space-x-12 items-center ">
+        <header className="flex flex-wrap bg-gray-100 h-24">
+            <nav className="flex w-screen justify-between text-gray-600">
+                <div className="w-full px-12 flex space-x-12 items-center ">
                     <Link to="/" className="text-2xl font-bold">
                         BRAND NAME
                     </Link>

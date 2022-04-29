@@ -14,7 +14,7 @@ import Footer from './components/Footer';
 
 function App() {
 	return (
-		<div className="App h-auto">
+		<div className="App min-h-screen h-auto">
 		<CartContextProvider>
 			<BrowserRouter> 
 				<Navbar/>

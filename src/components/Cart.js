@@ -4,6 +4,8 @@ import { CartContext } from "../context/CartContext"
 import { doc, setDoc, serverTimestamp, collection, updateDoc, increment } from "firebase/firestore";
 import db from './utils/firebaseConfig'
 import CartModal from "./CartModal";
+import Swal from 'sweetalert2'
+
 
 const Cart = () => {
     const context = useContext(CartContext)
@@ -59,10 +61,24 @@ const Cart = () => {
         }
 
         crateOrder()
-        .then(result => alert(`Su orden fue generada bajo el id: ${result.id}`))
+        // .then(result => alert(`Su orden fue generada bajo el id: ${result.id}`))
+
+        .then(result => Swal.fire(
+                'Order Created!',
+                `Your order was generated under the ID: 
+                     ${result.id}`,
+                'success'
+            ))
+
             .then(context.removeAllItems())
             .then(setModal((prevState) => !prevState))
-            .catch(err => console.log(err))
+            .catch(err => Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Something went wrong! 
+                    Error: ${err}` ,
+                footer: 'Please, try again!'
+            }))
     }
 
     return (

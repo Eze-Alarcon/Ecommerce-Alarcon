@@ -9,13 +9,9 @@ import About from './components/About';
 import CartContextProvider from './context/CartContext';
 
 
-/* import Footer from './components/Footer'; */
-
-
-
 function App() {
 	return (
-		<div className="App min-h-screen h-screen">
+		<div className="App min-h-screen">
 		<CartContextProvider>
 			<BrowserRouter> 
 				<Navbar/>
@@ -26,7 +22,6 @@ function App() {
 					<Route path="/cart" element={<Cart/>} />
 					<Route path="/about" element={<About/>} />
 				</Routes>
-				{/* <Footer/> */}
 			</BrowserRouter>
 		</CartContextProvider>
 		</div>

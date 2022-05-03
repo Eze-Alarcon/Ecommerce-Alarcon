@@ -1,6 +1,6 @@
 const About = () => {
     const ABOUT_IMAGE_SMALL = "https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/about_small_img.jpeg?alt=media&token=d99b052b-a009-4cef-aaf3-b5b7a35fdca1"
-    const ABOUT_IMAGE_LARGE = "https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/about_large_img.jpeg?alt=media&token=073ba56-9f6c-4f99-86cc-984b684c9c32"
+    // const ABOUT_IMAGE_LARGE = "https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/about_large_img.jpeg?alt=media&token=073ba56-9f6c-4f99-86cc-984b684c9c32"
     const ABOUT_IMAGE_LARGE_BACKUP = "https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/about_img.jpeg?alt=media&token=f0563f62-5b92-4d69-bb5e-d077c0396557"
     
     return (
@@ -21,8 +21,6 @@ const About = () => {
                         backgroundRepeat: 'no-repeat'
                     }}></div>
 
-                    {/* https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/about_small_img.jpeg?alt=media&token=d99b052b-a009-4cef-aaf3-b5b7a35fdca1 */}
-                    
                     <h1 className="text-3xl font-bold pt-8 lg:pt-0">
                         Ezequiel Alarcon
                     </h1>

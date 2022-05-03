@@ -61,8 +61,6 @@ const Cart = () => {
         }
 
         crateOrder()
-        // .then(result => alert(`Su orden fue generada bajo el id: ${result.id}`))
-
         .then(result => Swal.fire(
                 'Order Created!',
                 `Your order was generated under the ID: 
@@ -72,6 +70,8 @@ const Cart = () => {
 
             .then(context.removeAllItems())
             .then(setModal((prevState) => !prevState))
+
+            
             .catch(err => Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

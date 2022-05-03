@@ -9,6 +9,16 @@ const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
     const [totalProducts, setTotalProducts] = useState(0)
     const [update, setUpdate] = useState(false)
+
+    /* 
+        Update cumple la siguiente funcion:
+            Al cambiar la cantidad de items en el carrito, se vuelve true y ejecuta el useEfect.
+            El use efect (el primero de abajo) actualiza la cantidad de productos en el carrito (en el navbar)
+
+            Esto fue realizado asi ya que, el useEfect no detectaba los cambios en la cantidad de productos iguales,
+            de esta manera, el useEfect se ejecuta y al finalizar vuelve a setear en "false" el "update"
+    
+    */
     
     useEffect(() => {
         let val = cartList.reduce((acc, item) => acc + Number(item.quantity), 0)
@@ -36,9 +46,7 @@ const CartContextProvider = ({children}) => {
         }
     }
 
-
-
-
+    // Remover Item especifico del carrito
     const removeItem = (e) => {
         e.preventDefault()
         let identificator = e.target.dataset.identificator
@@ -46,6 +54,8 @@ const CartContextProvider = ({children}) => {
     } 
 
     const removeAllItems = () => setCartList([])
+
+
 
     return (
         <CartContext.Provider value={{

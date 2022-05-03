@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 
 const Banner = () => {
 
+    // funcion para deslizar suavemente hacia los productos
     const goTo = () => {
         const anchor = document.getElementById("content")
         anchor.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -44,7 +45,7 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-            </div>
+            </div>  
             </div>
         </>
     )

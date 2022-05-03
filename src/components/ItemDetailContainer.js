@@ -28,11 +28,8 @@ function ItemDetailContainer() {
 
     if (error !== null) return  <ErrorPage/>
     
-    if (info) {
-        return <ItemDetail productInfo={info} />
-    } else {
-        return  <p>Cargando</p>
-    }
+    if (info) return <ItemDetail productInfo={info} />
+    else return  <p>Cargando</p>
 
 }
 

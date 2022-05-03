@@ -15,6 +15,7 @@ const Cart = () => {
     const SHIPPING = 8
 
     useEffect(() => {
+        // se llamara x porque el setSubtotal no me deja recibir la funcion completa (ocasiona muchos renders)
         let x = context.cartList?.reduce((acc, item) => acc + (Number(item.price) * (item.quantity)), 0)
         setSubtotal(x)
     },[context])
@@ -92,6 +93,7 @@ const Cart = () => {
 
                     let productCategory
 
+                    // Esto es solo para poder tener el texto con la primera letra en mayuscula
                     if (item.category === "electronics") productCategory = "Electronics"
                     if (item.category === "jewelery") productCategory = "Jewelery"
                     if (item.category === "men's clothing") productCategory = "Men's clothing"

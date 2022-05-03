@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import  { CartWidget } from './CartWidget'
+import  { NavBarWidget } from './NavBarWidget'
 
 function Navbar() {
     return(
@@ -21,7 +21,7 @@ function Navbar() {
                 </div>
                 <div className="flex items-center text-gray-600 mr-24">
                     <Link to="/cart" className="flex items-center hover:text-gray-900">
-                        <CartWidget/>
+                        <NavBarWidget/>
                     </Link>
                 </div>
             </nav>

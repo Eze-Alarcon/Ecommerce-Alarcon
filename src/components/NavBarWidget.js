@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 
-function CartWidget() {
+function NavBarWidget() {
     const context = useContext(CartContext)
 
 
@@ -22,4 +22,4 @@ function CartWidget() {
     )
 }
 
-export { CartWidget }
+export { NavBarWidget }

@@ -4,12 +4,12 @@ const About = () => {
     const ABOUT_IMAGE_LARGE_BACKUP = "https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/about_img.jpeg?alt=media&token=f0563f62-5b92-4d69-bb5e-d077c0396557"
     
     return (
-        <section className="font-sans mt-24 antialiased text-gray-900 leading-normal tracking-wider bg-cover">
+        <section className="font-sans mt-16 lg:mt-24 antialiased text-gray-900 leading-normal tracking-wider bg-cover">
 
 
-        <div className="max-w-4xl flex items-center h-auto lg:h-full flex-wrap mx-auto my-32 lg:my-0">
+        <div className="lg:max-w-4xl flex items-center h-auto lg:h-full flex-wrap mx-auto my-0 lg:my-32">
             
-            <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0">
+            <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white mx-6 lg:mx-0">
             
 
                 <div className="p-4 md:p-12 text-center lg:text-left">
@@ -20,11 +20,9 @@ const About = () => {
                         backgroundRepeat: 'no-repeat'
                     }}></div>
 
-                    <h1 className="text-3xl font-bold pt-8 lg:pt-0">
-                        Ezequiel Alarcon
-                    </h1>
+                    <h1 className="text-3xl font-bold pt-8 lg:pt-0">Ezequiel Alarcon</h1>
                     <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
-                    <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
+                    <p className="pt-4 w-full text-base font-bold flex items-center justify-center lg:justify-start">
                         <svg className="h-4 fill-current text-green-700 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                             <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z"/>
                         </svg> 

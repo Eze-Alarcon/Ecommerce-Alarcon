@@ -1,32 +1,47 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import  { NavBarWidget } from './NavBarWidget'
 
 function Navbar() {
+    const [open, setOpen] = useState(false)
+
+    const hanldeModal = () => setOpen((prevState) => !prevState)
+
     return(
-        <>
-        <header className="flex flex-wrap bg-gray-100 h-24">
-            <nav className="flex w-screen justify-between text-gray-600">
-                <div className="w-full px-12 flex space-x-12 items-center ">
-                    <Link to="/" className="text-2xl font-bold">
-                        BRAND NAME
-                    </Link>
-                    <ul className="md:flex mx-auto px-5 font-semibold space-x-12">
-                        <li><Link to="/electronics" className="hover:text-gray-900">Electronics</Link></li>
-                        <li><Link to="/jewelery" className="hover:text-gray-900">Jewelery</Link></li>
-                        <li><Link to="/men's clothing" className="hover:text-gray-900">Men's clothing</Link></li>
-                        <li><Link to="/women's clothing" className="hover:text-gray-900">Women's clothing</Link></li>
-                        <li><Link to="/about" className="hover:text-gray-900">About us</Link></li>
-                    </ul>
-                    
+        <header className="w-full text-gray-700 bg-gray-100">
+            <div x-data="{ open: true }" className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                <div className="flex flex-row items-center justify-between p-4">
+                
+                    <Link to="/" className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg  focus:outline-none focus:shadow-outline">BRAND NAME</Link>
+                
+                    <button className="flex justify-between items-center gap-10 rounded-lg md:hidden focus:outline-none focus:shadow-outline" onClick={hanldeModal}>
+                        <Link to="/cart" className={(!open) ? "hidden" : "flex items-center hover:text-gray-900"}><NavBarWidget/></Link>
+                        <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
+                            {/* open menu svg */}
+                            <path x-show="!open" className={(!open) ? "hidden" : ""} fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>
+                            {/* close menu svg */}
+                            <path x-show="open" className={(!open) ? "" : "hidden"} fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                        </svg>
+                    </button>
+                
                 </div>
-                <div className="flex items-center text-gray-600 mr-24">
-                    <Link to="/cart" className="flex items-center hover:text-gray-900">
-                        <NavBarWidget/>
-                    </Link>
-                </div>
-            </nav>
+                
+                <nav className={(!open) 
+                        ? "flex flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row"
+                        : "flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row"
+                }>
+                    <Link to="/electronics" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Electronics</Link>
+                    <Link to="/jewelery" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Jewelery</Link>
+                    <Link to="/men's clothing" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Men's clothing</Link>
+                    <Link to="/women's clothing" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Women's clothing</Link>
+                    <Link to="/about" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">About us</Link>
+                
+                </nav>
+                <Link to="/cart" className={(!open) ? "md:flex md:items-center md:hover:text-gray-900 hidden" : "hidden"}>
+                    <NavBarWidget/>
+                </Link>
+            </div>
         </header>
-        </>
     )
 }
 

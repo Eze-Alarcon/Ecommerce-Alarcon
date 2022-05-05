@@ -15,7 +15,9 @@ function Navbar() {
                     <Link to="/" className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg  focus:outline-none focus:shadow-outline">BRAND NAME</Link>
                 
                     <button className="flex justify-between items-center gap-10 rounded-lg md:hidden focus:outline-none focus:shadow-outline" onClick={hanldeModal}>
-                        <Link to="/cart" className={(!open) ? "hidden" : "flex items-center hover:text-gray-900"}><NavBarWidget/></Link>
+                        <div className={(!open) ? "hidden" : "flex items-center"}>
+                            <Link to="/cart" className="flex items-center hover:text-gray-900"><NavBarWidget/></Link>
+                        </div>
                         <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
                             {/* open menu svg */}
                             <path x-show="!open" className={(!open) ? "hidden" : ""} fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clipRule="evenodd"></path>
@@ -28,7 +30,7 @@ function Navbar() {
                 
                 <nav className={(!open) 
                         ? "flex flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row"
-                        : "flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row"
+                        : "md:flex flex-col flex-grow hidden pb-4 md:pb-0 md:justify-end md:flex-row"
                 }>
                     <Link to="/electronics" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Electronics</Link>
                     <Link to="/jewelery" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Jewelery</Link>
@@ -37,9 +39,9 @@ function Navbar() {
                     <Link to="/about" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">About us</Link>
                 
                 </nav>
-                <Link to="/cart" className={(!open) ? "md:flex md:items-center md:hover:text-gray-900 hidden" : "hidden"}>
-                    <NavBarWidget/>
-                </Link>
+                    <Link to="/cart" className="hidden md:flex items-center hover:text-gray-900">
+                        <NavBarWidget/>
+                    </Link>
             </div>
         </header>
     )

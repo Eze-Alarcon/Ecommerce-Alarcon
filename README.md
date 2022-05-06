@@ -22,10 +22,11 @@ Welcome, this is the final project of the React.js course done in the educationa
 			* NavBarWidget
 	
 	Componentes de la 1era ruta: "/"
-		- ItemList
+		- ItemListContainer
 			* Banner
-			* Item
-				** Stars
+			* ItemList
+				* Item
+					* Stars
 			* ErrorPage
 
 	Componentes de la 2da ruta: "/:idCategory"

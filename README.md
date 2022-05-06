@@ -15,6 +15,41 @@ Welcome, this is the final project of the React.js course done in the educationa
   - Font Awesome (Icons)
 - Firebase (Database)
 
+# Rutas y componentes utilizados:
+
+	Componentes que siempre se renderizan:
+		- NavBar
+			* NavBarWidget
+	
+	Componentes de la 1era ruta: "/"
+		- ItemList
+			* Banner
+			* Item
+				** Stars
+			* ErrorPage
+
+	Componentes de la 2da ruta: "/:idCategory"
+		- CategoryListContainer
+			* Item
+				** Stars
+			* ErrorPage
+
+	Componentes de la 3era ruta: "/products/:idProduct"
+		- ItemDetailContainer
+			* ItemDetail
+				** ItemCount
+				** Stars
+			* ErrorPage
+
+	Componentes de la 4ta ruta: "/cart"
+		- Cart
+			* CartModal
+
+	Componentes de la 5ta ruta: "/about"
+		- About
+
+
+
 ## Development team
 
 * Ezequiel Alarcon

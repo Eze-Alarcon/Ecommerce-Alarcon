@@ -34,6 +34,8 @@ const Cart = () => {
         if (context.cartList.length === 0) return 
     }
 
+
+    // payment creara nuestra orden en un objeto y se la enviara a firebase
     const payment = () => {
         let order = {
             buyer: {
@@ -54,14 +56,14 @@ const Cart = () => {
 
         console.log(order)
 
-        const crateOrder = async () => {
+        const createOrder = async () => {
             const orderRef = doc(collection(db, "orders"))
             await setDoc(orderRef, order)
             updateDB()
             return orderRef;
         }
 
-        crateOrder()
+        createOrder()
         .then(result => Swal.fire(
                 'Order Created!',
                 `Your order was generated under the ID: 

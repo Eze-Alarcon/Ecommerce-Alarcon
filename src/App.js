@@ -29,3 +29,41 @@ function App() {
 }
 
 export default App;
+
+
+/* 
+
+Rutas y componentes utilizados:
+
+	Default
+		- NavBar
+			* NavBarWidget
+	
+	1era ruta: "/"
+		- ItemList
+			* Banner
+			* Item
+				* Stars
+			* ErrorPage
+
+	2da ruta: "/:idCategory"
+		- CategoryListContainer
+			* Item
+				* Stars
+			* ErrorPage
+
+	3era ruta: "/products/:idProduct"
+		- ItemDetailContainer
+			* ItemDetail
+				* ItemCount
+				* Stars
+			* ErrorPage
+
+	4ta ruta: "/cart"
+		- Cart
+			* CartModal
+
+	5ta ruta: "/about"
+		- About
+
+*/

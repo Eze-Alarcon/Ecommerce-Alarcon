@@ -54,6 +54,7 @@ const Cart = () => {
             total: subtotal
         }
 
+        console.log(data)
         console.log(order)
 
         const createOrder = async () => {

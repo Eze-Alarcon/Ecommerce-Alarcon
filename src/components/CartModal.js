@@ -2,8 +2,8 @@ const CartModal = ({closeModal, saveInfo, pay}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        pay(() => {
-            saveInfo({
+        saveInfo(() => {
+            return ({
                 name: e.target[0].value,
                 email: e.target[1].value,
                 phone: e.target[2].value,
@@ -14,11 +14,11 @@ const CartModal = ({closeModal, saveInfo, pay}) => {
                 }
             })
         })
-    } 
-
-    const close = () => {
-        closeModal((prevState) => !prevState)
+        pay()
     }
+    
+
+    const close = () => closeModal((prevState) => !prevState)
 
     return (
         <form onSubmit={(e) => handleSubmit(e)} className="z-10 absolute w-[30vw] text-left py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">

@@ -6,7 +6,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBOhjN7ba94-r1cLksq7j9ShIvfS5fITgo",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "first-ecommerce-be064.firebaseapp.com",
   projectId: "first-ecommerce-be064",
   storageBucket: "first-ecommerce-be064.appspot.com",

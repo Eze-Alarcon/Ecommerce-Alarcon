@@ -11,7 +11,14 @@ const Cart = () => {
     const context = useContext(CartContext)
     const [subtotal, setSubtotal] = useState(0)
     const [modal, setModal] = useState(false)
-    const [data, setData] = useState({})
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        cardNumber: "",
+        expiration: "",
+        cvc: "",
+    })
     const SHIPPING = 8
 
     useEffect(() => {
@@ -34,12 +41,18 @@ const Cart = () => {
         if (context.cartList.length === 0) return 
     }
 
-
     // payment creara nuestra orden en un objeto y se la enviara a firebase
     const payment = () => {
         let order = {
             buyer: {
-                ...data
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                card: {
+                    cardNumber: data.cardNumber,
+                    expiration: data.expiration,
+                    cvc: data.cvc,
+                }
             },
             date: serverTimestamp(),
             items: context.cartList.map((item) => {
@@ -57,32 +70,32 @@ const Cart = () => {
         console.log(data)
         console.log(order)
 
-        const createOrder = async () => {
-            const orderRef = doc(collection(db, "orders"))
-            await setDoc(orderRef, order)
-            updateDB()
-            return orderRef;
-        }
+        // const createOrder = async () => {
+        //     const orderRef = doc(collection(db, "orders"))
+        //     await setDoc(orderRef, order)
+        //     updateDB()
+        //     return orderRef;
+        // }
 
-        createOrder()
-        .then(result => Swal.fire(
-                'Order Created!',
-                `Your order was generated under the ID: 
-                     ${result.id}`,
-                'success'
-            ))
+        // createOrder()
+        // .then(result => Swal.fire(
+        //         'Order Created!',
+        //         `Your order was generated under the ID: 
+        //              ${result.id}`,
+        //         'success'
+        //     ))
 
-            .then(context.removeAllItems())
-            .then(setModal((prevState) => !prevState))
+        //     .then(context.removeAllItems())
+        //     .then(setModal((prevState) => !prevState))
 
             
-            .catch(err => Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: `Something went wrong! 
-                    Error: ${err}` ,
-                footer: 'Please, try again!'
-            }))
+        //     .catch(err => Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: `Something went wrong! 
+        //             Error: ${err}` ,
+        //         footer: 'Please, try again!'
+        //     }))
     }
 
     return (
@@ -185,7 +198,7 @@ const Cart = () => {
                 {
                     !modal  
                         ? <></>
-                        : <CartModal pay={payment} closeModal={setModal} saveInfo={setData}/>
+                        : <CartModal pay={payment} closeModal={setModal} saveInfo={setData} info={data}/>
                 }
 
         </main>

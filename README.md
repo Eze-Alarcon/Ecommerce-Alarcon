@@ -17,11 +17,13 @@ Welcome, this is the final project of the React.js course done in the educationa
 
 # Rutas y componentes utilizados:
 
-	Componentes que siempre se renderizan:
+	Rutas y componentes utilizados:
+
+	Default
 		- NavBar
 			* NavBarWidget
 	
-	Componentes de la 1era ruta: "/"
+	1era ruta: "/"
 		- ItemListContainer
 			* Banner
 			* ItemList
@@ -29,24 +31,25 @@ Welcome, this is the final project of the React.js course done in the educationa
 					* Stars
 			* ErrorPage
 
-	Componentes de la 2da ruta: "/:idCategory"
+	2da ruta: "/:idCategory"
 		- CategoryListContainer
 			* Item
-				** Stars
+				* Stars
 			* ErrorPage
 
-	Componentes de la 3era ruta: "/products/:idProduct"
+	3era ruta: "/products/:idProduct"
 		- ItemDetailContainer
 			* ItemDetail
-				** ItemCount
-				** Stars
+				* ItemCount
+				* Stars
 			* ErrorPage
 
-	Componentes de la 4ta ruta: "/cart"
+	4ta ruta: "/cart"
 		- Cart
-			* CartModal
+			* CartAside
+				* CartModal
 
-	Componentes de la 5ta ruta: "/about"
+	5ta ruta: "/about"
 		- About
 
 
@@ -70,6 +73,12 @@ After downloading the project from the GitHub repository, run the command "npm i
 ### Extra:
 
 We are still working on the project, improving its visualization on mobile devices, so slight changes can be expected in the future.
+
+# Explanatory video
+
+This short video shows how the application would work in a very brief way.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kZ9GIpSIwqQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # More info about React.js
 

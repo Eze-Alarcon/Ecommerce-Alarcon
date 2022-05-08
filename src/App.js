@@ -62,7 +62,8 @@ Rutas y componentes utilizados:
 
 	4ta ruta: "/cart"
 		- Cart
-			* CartModal
+			* CartAside
+				* CartModal
 
 	5ta ruta: "/about"
 		- About

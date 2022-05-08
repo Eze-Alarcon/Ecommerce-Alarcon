@@ -78,7 +78,9 @@ We are still working on the project, improving its visualization on mobile devic
 
 This short video shows how the application would work in a very brief way.
 
-[![VIDEO EXPLANATORY IN YOUTUBE](https://img.youtube.com/vi/kZ9GIpSIwqQ/0.jpg)](https://www.youtube.com/watch?v=kZ9GIpSIwqQ)
+<a href="https://www.youtube.com/watch?v=kZ9GIpSIwqQ" target="_blank">
+ <img src="https://img.youtube.com/vi/kZ9GIpSIwqQ/0.jpg" alt="Watch the video" width="240" height="180" border="10" />
+</a>
 
 # More info about React.js
 

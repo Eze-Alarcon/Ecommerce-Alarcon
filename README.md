@@ -78,7 +78,7 @@ We are still working on the project, improving its visualization on mobile devic
 
 This short video shows how the application would work in a very brief way.
 
-[![VIDEO EXPLANATORY IN YOUTUBE](https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/screenshot.png?alt=media&token=61a385a5-bcea-47c0-b61d-bbe28463ba32)](https://www.youtube.com/watch?v=kZ9GIpSIwqQ)
+[![VIDEO EXPLANATORY IN YOUTUBE](https://img.youtube.com/vi/kZ9GIpSIwqQ/0.jpg)](https://www.youtube.com/watch?v=kZ9GIpSIwqQ)
 
 # More info about React.js
 

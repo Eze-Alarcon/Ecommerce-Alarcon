@@ -70,32 +70,32 @@ const Cart = () => {
         console.log(data)
         console.log(order)
 
-        // const createOrder = async () => {
-        //     const orderRef = doc(collection(db, "orders"))
-        //     await setDoc(orderRef, order)
-        //     updateDB()
-        //     return orderRef;
-        // }
+        const createOrder = async () => {
+            const orderRef = doc(collection(db, "orders"))
+            await setDoc(orderRef, order)
+            updateDB()
+            return orderRef;
+        }
 
-        // createOrder()
-        // .then(result => Swal.fire(
-        //         'Order Created!',
-        //         `Your order was generated under the ID: 
-        //              ${result.id}`,
-        //         'success'
-        //     ))
+        createOrder()
+        .then(result => Swal.fire(
+                'Order Created!',
+                `Your order was generated under the ID: 
+                     ${result.id}`,
+                'success'
+            ))
 
-        //     .then(context.removeAllItems())
-        //     .then(setModal((prevState) => !prevState))
+            .then(context.removeAllItems())
+            .then(setModal((prevState) => !prevState))
 
             
-        //     .catch(err => Swal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: `Something went wrong! 
-        //             Error: ${err}` ,
-        //         footer: 'Please, try again!'
-        //     }))
+            .catch(err => Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Something went wrong! 
+                    Error: ${err}` ,
+                footer: 'Please, try again!'
+            }))
     }
 
     return (
@@ -198,7 +198,13 @@ const Cart = () => {
                 {
                     !modal  
                         ? <></>
-                        : <CartModal pay={payment} closeModal={setModal} saveInfo={setData} info={data}/>
+                        : <CartModal 
+                            props={{
+                                payment,
+                                setModal,
+                                setData,
+                                data
+                            }} />
                 }
 
         </main>

@@ -1,18 +1,16 @@
 // import { useState } from "react"
 
-const CartModal = ({closeModal, saveInfo, pay, info}) => {
+const CartModal = ({props}) => {
 
-
-    const handleChange = (e) => saveInfo({...info, [e.target.id]: e.target.value})
+    const handleChange = (e) => props.setData({...props.data, [e.target.id]: e.target.value})
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        pay()
+        props.payment()
     }
-    
 
-    const close = () => closeModal(prevState => !prevState)
+    const close = () => props.setModal(prevState => !prevState)
 
     return (
         <form onSubmit={(e) => handleSubmit(e)} className="z-10 absolute w-[30vw] text-left py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
@@ -31,7 +29,7 @@ const CartModal = ({closeModal, saveInfo, pay, info}) => {
             <input 
                 id="name" 
                 required 
-                value={info.name}
+                value={props.data.name}
                 onChange={handleChange}
                 className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" 
                 placeholder="James" />
@@ -41,7 +39,7 @@ const CartModal = ({closeModal, saveInfo, pay, info}) => {
             </label>
             <input 
                 id="email"
-                value={info.email}
+                value={props.data.email}
                 onChange={handleChange}
                 className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" 
                 placeholder="James@gmail.com" />
@@ -51,7 +49,7 @@ const CartModal = ({closeModal, saveInfo, pay, info}) => {
             </label>
             <input 
                 id="phone" 
-                value={info.phone}
+                value={props.data.phone}
                 onChange={handleChange}
                 className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" 
                 placeholder="XXX-XXX-XXX" />
@@ -69,7 +67,7 @@ const CartModal = ({closeModal, saveInfo, pay, info}) => {
                 <input 
                     id="cardNumber" 
                     required 
-                    value={info.cardNumber}
+                    value={props.data.cardNumber}
                     onChange={handleChange}
                     className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-16 text-sm border-gray-300 rounded border" 
                     placeholder="XXXX - XXXX - XXXX - XXXX" />
@@ -87,7 +85,7 @@ const CartModal = ({closeModal, saveInfo, pay, info}) => {
                 <input 
                     id="expiration" 
                     required 
-                    value={info.expiration}
+                    value={props.data.expiration}
                     onChange={handleChange}
                     className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" 
                     placeholder="MM/YY" />
@@ -103,7 +101,7 @@ const CartModal = ({closeModal, saveInfo, pay, info}) => {
                 <input 
                     id="cvc" 
                     required 
-                    value={info.cvc}
+                    value={props.data.cvc}
                     onChange={handleChange}
                     className="mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" 
                     placeholder="XXX" />

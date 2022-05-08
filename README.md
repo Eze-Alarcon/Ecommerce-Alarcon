@@ -78,7 +78,7 @@ We are still working on the project, improving its visualization on mobile devic
 
 This short video shows how the application would work in a very brief way.
 
-<a href="https://www.youtube.com/watch?v=kZ9GIpSIwqQ" target="_blank">
+<a href="https://www.youtube.com/watch?v=kZ9GIpSIwqQ" target="blank">
  <img src="https://img.youtube.com/vi/kZ9GIpSIwqQ/0.jpg" alt="Watch the video" width="240" height="180" border="10" />
 </a>
 

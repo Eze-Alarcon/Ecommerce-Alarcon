@@ -78,7 +78,7 @@ We are still working on the project, improving its visualization on mobile devic
 
 This short video shows how the application would work in a very brief way.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kZ9GIpSIwqQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![VIDEO EXPLANATORY IN YOUTUBE](https://firebasestorage.googleapis.com/v0/b/first-ecommerce-be064.appspot.com/o/screenshot.png?alt=media&token=61a385a5-bcea-47c0-b61d-bbe28463ba32)](https://www.youtube.com/watch?v=kZ9GIpSIwqQ)
 
 # More info about React.js
 
